@@ -24,15 +24,12 @@ class _HomePageViewState extends State<HomePageView> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
        
-        children: [Container(height:height* 0.5 ,width: width , decoration:const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(
-              'assets/images/lago.jpg'),
-          fit: BoxFit.fill,
-        ),
+     children: const [
+        LineChartSample2()
+     ],
        
-      ), child: const ChartCustom()),
-        ]),
+     ),
+       
     );
   }
 }
