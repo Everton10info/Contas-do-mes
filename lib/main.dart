@@ -8,12 +8,13 @@ import 'package:contas_do_mes/componets/chart-custom.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'repositorys/repository-database -interface.dart';
 import 'views/splash-page.dart';
 
 void main() {
   runApp(
     MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_)=> ViewModelForm(Repository(TransactionsDataBase())))
+      ChangeNotifierProvider(create: (_)=> ViewModelForm(Repository()))
     ],
     child: const MyApp(),
     ));

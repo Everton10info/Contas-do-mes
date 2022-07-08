@@ -3,12 +3,14 @@ import 'package:contas_do_mes/repositorys/repository.dart';
 import 'package:contas_do_mes/models/transaction_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
+import '../repositorys/repository-database -interface.dart';
+
 
 enum CurrentSituation { payOut, owing, received, toReceive }
 
 class ViewModelForm extends ChangeNotifier {
-  Repository rp;
+  IRepository repository;
   TextEditingController name = TextEditingController();
   TextEditingController value = TextEditingController();
   String? currentDate = DateTime.now().toString();
@@ -17,7 +19,7 @@ class ViewModelForm extends ChangeNotifier {
   TransactionModel? setTransaction;
   List<TransactionModel> allList = [];
 
-  ViewModelForm(this.rp);
+  ViewModelForm(this.repository );
 
   void setTransactions() async {
     allList.clear();
@@ -29,17 +31,16 @@ class ViewModelForm extends ChangeNotifier {
       typeTransaction: 'output',
       valor: double.parse(value.text),
     );
+    repository.insertTrasaction(setTransaction!);
 
-    rp.saveList(setTransaction!);
-
-    allList = await rp.getListAll();
+    allList = await repository.getAllTransactions();
     notifyListeners();
   }
 
-  void deleteTr(int id) async {
-    await rp.deleteTransaction(id);
+  void deleteTransaction(int id) async {
+    await repository.deleteTransactions(id);
     allList.clear();
-    allList = await rp.getListAll();
+    allList = await repository.getAllTransactions();
     notifyListeners();
   }
 }

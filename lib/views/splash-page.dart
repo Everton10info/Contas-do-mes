@@ -4,6 +4,8 @@ import 'package:contas_do_mes/views/home-page-view.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import 'all-list-view.dart';
+
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
 
@@ -16,7 +18,7 @@ class SplashPage extends StatelessWidget {
       body: AnimatedSplashScreen(
         duration: 1500,
         splash: Lottie.asset('assets/images/money.json'),
-        nextScreen: const HomePageView(),
+        nextScreen:  const AllListsPage(),
         splashTransition: SplashTransition.scaleTransition,
         splashIconSize: 200.5,
         //pageTransitionType: PageTransitionType.fade,

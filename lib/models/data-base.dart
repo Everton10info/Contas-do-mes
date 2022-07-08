@@ -10,8 +10,7 @@ import 'transaction_model.dart';
 class TransactionsDataBase {
 
 
-//variáveis usadas para criar a tabela
-
+//variables used for  create  table fields
   String nametable = 'tbl_transaction';
   String id = 'id';
   String nameTransaction = 'nameTransaction';
@@ -22,22 +21,20 @@ class TransactionsDataBase {
 
     Database? _database;
 
-  //inicializa o banco
+  //initialaze db
 Future<Database?> get database async{
-  // ignore: unnecessary_null_comparison, prefer_conditional_assignment
-  if(_database == null ){
-    _database = await initialBase();
-  }
+  //if databse null
+  _database ??= await initialBase();
   return _database;
 }
-//criando tabela
+
 Future<Database> initialBase()async{
   Directory dir = await getApplicationDocumentsDirectory();
   String path = dir.path + 'dbTransactions.db';
   var base = await openDatabase(path,version: 1,onCreate: _createTable);
   return base;
 }
- 
+ //create table
 _createTable(Database db , int versao)async{
 await db.execute('CREATE TABLE $nametable('
 '$id INTEGER PRIMARY KEY AUTOINCREMENT,'
@@ -47,7 +44,7 @@ await db.execute('CREATE TABLE $nametable('
         '$typeTransaction TEXT,'
         '$valor DOUBLE)');
 }
-//metodo inserir (transação)
+/* //metodo inserir (transação)
  Future<int> insertTransaction(TransactionModel  transacao) async {
     Database? db = await database;
     var result = await db!.insert(nametable, transacao.toMap());
@@ -73,6 +70,6 @@ await db.execute('CREATE TABLE $nametable('
     await db!.update(nametable, id);
  } */
 
+ */
 
-
-}}
+}

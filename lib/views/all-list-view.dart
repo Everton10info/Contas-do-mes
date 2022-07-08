@@ -15,7 +15,6 @@ class _AllListsPageState extends State<AllListsPage> {
   @override
   Widget build(BuildContext context) {
     var heigth = MediaQuery.of(context).size.height;
-    ViewModelForm? _viewModel = context.watch<ViewModelForm?>(); //temporariamente
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           isExtended: true,
@@ -31,12 +30,13 @@ class _AllListsPageState extends State<AllListsPage> {
           SizedBox(
             height: heigth * 0.9,
             child: Consumer<ViewModelForm>(
-              builder: ((context, _viewModel, child) {
+              builder: ((context, _viewModel, __) {
                 return ListView.builder(
                     itemCount: _viewModel.allList.length,
                     itemBuilder: ((context, index) {
                       return InkWell(
-                        onTap:(() =>  _viewModel.deleteTr(_viewModel.allList[index].id!)),
+                        onTap: (() =>
+                            _viewModel.deleteTransaction(_viewModel.allList[index].id!)),
                         child: Card(
                           child: SizedBox(
                             height: heigth * 0.1,
@@ -44,10 +44,12 @@ class _AllListsPageState extends State<AllListsPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
-                                  children: [Text('${ _viewModel.allList[index].nameTransaction}'),
-                                  Text('${ _viewModel.allList[index].valor}'),
-                                  Text('${ _viewModel.allList[index].dueDate}'),
-                                  Text(' ${_viewModel.allList[index].date}')],
+                                  children: [
+                                    Text(_viewModel.allList[index].nameTransaction),
+                                    Text('${_viewModel.allList[index].valor}'),
+                                    Text('${_viewModel.allList[index].dueDate}'),
+                                    Text(' ${_viewModel.allList[index].date}')
+                                  ],
                                 ),
                                 Column()
                               ],
@@ -61,7 +63,6 @@ class _AllListsPageState extends State<AllListsPage> {
           ),
         ],
       ),
-                        
     );
   }
 }

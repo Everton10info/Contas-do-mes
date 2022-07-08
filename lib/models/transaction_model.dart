@@ -26,7 +26,7 @@ class TransactionModel {
         'valor': valor,
       };
 
-  factory TransactionModel.fromjson(Map<String, dynamic> map) {
+ factory TransactionModel.fromjson(Map<String, dynamic> map) {
     return TransactionModel(
       id: map['id'],
       nameTransaction: map['nameTransaction'],
