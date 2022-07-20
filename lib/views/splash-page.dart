@@ -1,8 +1,9 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:contas_do_mes/componets/chart-custom.dart';
+import 'package:contas_do_mes/componets/chart_custom.dart';
 import 'package:contas_do_mes/views/home-page-view.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:page_transition/page_transition.dart';
 
 import 'all-list-view.dart';
 
@@ -12,16 +13,15 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( 
+      appBar: AppBar(
         title: const Text('Contas do Mês'),
       ),
       body: AnimatedSplashScreen(
-        duration: 1500,
+        duration: 1000,
         splash: Lottie.asset('assets/images/money.json'),
-        nextScreen:  const AllListsPage(),
-        splashTransition: SplashTransition.scaleTransition,
-        splashIconSize: 200.5,
-        //pageTransitionType: PageTransitionType.fade,
+        splashTransition: SplashTransition.fadeTransition,
+        nextScreen: const HomePageView(),
+        splashIconSize: 200.0,
       ),
     );
   }

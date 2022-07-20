@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 class TransactionModel {
   int? id;
   String nameTransaction;
@@ -26,7 +24,7 @@ class TransactionModel {
         'valor': valor,
       };
 
- factory TransactionModel.fromjson(Map<String, dynamic> map) {
+  factory TransactionModel.fromjson(Map<String, dynamic> map) {
     return TransactionModel(
       id: map['id'],
       nameTransaction: map['nameTransaction'],

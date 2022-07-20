@@ -1,6 +1,8 @@
-import 'package:contas_do_mes/view-models/view-model-form.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../view-models/view_model_form.dart';
 
 class FormTransaction extends StatefulWidget {
   const FormTransaction({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class _FormTransactionState extends State<FormTransaction> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var heigth = MediaQuery.of(context).size.height;
-    var viewModelForm = Provider.of<ViewModelForm>(context);
+    var viewModeDb = Provider.of<ViewModelDBTransactions>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastre'),
@@ -35,8 +37,8 @@ class _FormTransactionState extends State<FormTransaction> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                TextField(controller: viewModelForm.name),
-                TextFormField(controller: viewModelForm.value),
+                TextField(controller: viewModeDb.name),
+                TextFormField(controller: viewModeDb.value),
                 IconButton(
                     onPressed: () async {
                       DateTime? temp = await showDatePicker(
@@ -45,16 +47,16 @@ class _FormTransactionState extends State<FormTransaction> {
                         firstDate: DateTime(2020),
                         lastDate: DateTime(2025),
                       );
-                      viewModelForm.dueDateTime = temp.toString();
+                      viewModeDb.dueDateTime = temp.toString();
                     },
                     icon: const Icon(Icons.dataset)),
                 ElevatedButton(
                   onPressed: () {
-                    viewModelForm.setTransactions();
-                    viewModelForm.dueDateTime = '';
-                    viewModelForm.name.text = '';
-                    viewModelForm.value.text = '';
-                    viewModelForm.dueDateTime = '';
+                   viewModeDb.edition?viewModeDb.editionTransactions(): viewModeDb.setTransactions();
+                    viewModeDb.dueDateTime = '';
+                    viewModeDb.name.text = '';
+                    viewModeDb.value.text = '';
+                    viewModeDb.dueDateTime = '';
 
                     Navigator.of(context).pop();
                   },

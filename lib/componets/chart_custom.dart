@@ -10,8 +10,8 @@ class LineChartSample2 extends StatefulWidget {
 
 class _LineChartSample2State extends State<LineChartSample2> {
   List<Color> gradientColors = [
-    Color.fromARGB(255, 71, 35, 230),
-    Color.fromARGB(255, 2, 180, 211),
+    const Color.fromARGB(255, 71, 35, 230),
+    const Color.fromARGB(255, 2, 180, 211),
   ];
 
   bool showAvg = false;
@@ -20,20 +20,17 @@ class _LineChartSample2State extends State<LineChartSample2> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        AspectRatio(
-          aspectRatio: 1.70,
-          child: Container(
-            decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(18),
-                ),
-                color: Color(0xff232d37)),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  right: 18.0, left: 12.0, top: 24, bottom: 12),
-              child: LineChart(
-                showAvg ? avgData() : mainData(),
+        Container(
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(
+               Radius.zero
               ),
+              color: Color(0xff232d37)),
+          child: Padding(
+            padding: const EdgeInsets.only(
+                right: 16.0, left: 10.0, top: 20, bottom: 1),
+            child: LineChart(
+              showAvg ? avgData() : mainData(),
             ),
           ),
         ),
@@ -63,7 +60,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
     const style = TextStyle(
       color: Color(0xff68737d),
       fontWeight: FontWeight.bold,
-      fontSize: 16,
+      fontSize: 10,
     );
     Widget text;
     switch (value.toInt()) {
@@ -92,7 +89,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
     const style = TextStyle(
       color: Color(0xff67727d),
       fontWeight: FontWeight.bold,
-      fontSize: 15,
+      fontSize: 12,
     );
     String text;
     switch (value.toInt()) {
@@ -153,7 +150,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
             showTitles: true,
             interval: 1,
             getTitlesWidget: leftTitleWidgets,
-            reservedSize: 42,
+            reservedSize: 22,
           ),
         ),
       ),
@@ -235,7 +232,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           sideTitles: SideTitles(
             showTitles: true,
             getTitlesWidget: leftTitleWidgets,
-            reservedSize: 42,
+            reservedSize: 26,
             interval: 1,
           ),
         ),
