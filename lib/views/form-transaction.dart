@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../services/web_source.dart';
 import '../view-models/view_model_form.dart';
 
 class FormTransaction extends StatefulWidget {
@@ -52,6 +53,7 @@ class _FormTransactionState extends State<FormTransaction> {
                     icon: const Icon(Icons.dataset)),
                 ElevatedButton(
                   onPressed: () {
+               
                    viewModeDb.edition?viewModeDb.editionTransactions(): viewModeDb.setTransactions();
                     viewModeDb.dueDateTime = '';
                     viewModeDb.name.text = '';
