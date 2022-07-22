@@ -1,4 +1,5 @@
 
+import 'package:contas_do_mes/view-models/view_model_transaction.dart';
 import 'package:contas_do_mes/views/form-transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -18,9 +19,9 @@ var rp =RepositoryCoins();
 class _AllListsPageState extends State<AllListsPage> {
   @override
   Widget build(BuildContext context) {
-   var _viewModelDb = Provider.of<ViewModelDBTransactions>(context);
-    _viewModelDb.fetchAll();
-
+   var viewModelTransaction = Provider.of<ViewModelTransaction>(context);
+    viewModelTransaction.fetchAll();
+ var viewModelForm = Provider.of<ViewModeForm>(context);
     var heigth = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
@@ -31,16 +32,16 @@ class _AllListsPageState extends State<AllListsPage> {
         children: [
           SizedBox(
             height: heigth * 0.75,
-            child: Consumer<ViewModelDBTransactions>(
-              builder: ((context, _viewModelDb, __) {
+            child: Consumer<ViewModelTransaction>(
+              builder: ((context, viewModelTransaction, __) {
                 return ListView.builder(
-                  itemCount: _viewModelDb.allList.length,
+                  itemCount: viewModelTransaction.allList.length,
                   itemBuilder: ((context, index) {
                     return InkWell(
                      onTap: (() =>
-                         _viewModelDb.deleteTransaction(_viewModelDb.allList[index].id!)),
+                         viewModelTransaction.deleteTransaction(viewModelTransaction.allList[index].id!)),
                      onDoubleTap: () {
-                       _viewModelDb.getTransaction(_viewModelDb.allList[index]);
+                       viewModelForm.getTransaction(viewModelTransaction.allList[index]);
                        Navigator.of(context).pushNamed(FormTransaction.pageName);
                   },
                       child: Card(
@@ -51,10 +52,10 @@ class _AllListsPageState extends State<AllListsPage> {
                             children: [
                               Column(
                                 children: [
-                                  Text(_viewModelDb.allList[index].nameTransaction),
-                                  Text('${_viewModelDb.allList[index].valor}'),
-                                  Text('${_viewModelDb.allList[index].dueDate}'),
-                                  Text(' ${_viewModelDb.allList[index].date}')
+                                  Text(viewModelTransaction.allList[index].nameTransaction),
+                                  Text('${viewModelTransaction.allList[index].valor}'),
+                                  Text('${viewModelTransaction.allList[index].dueDate}'),
+                                  Text(' ${viewModelTransaction.allList[index].date}')
                                 ],
                               ),
                               Column()

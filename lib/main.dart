@@ -1,5 +1,6 @@
 import 'package:contas_do_mes/repositorys/repository_transactions.dart';
 import 'package:contas_do_mes/view-models/view_model_form.dart';
+import 'package:contas_do_mes/view-models/view_model_transaction.dart';
 import 'package:contas_do_mes/views/all-list-view.dart';
 import 'package:contas_do_mes/views/form-transaction.dart';
 import 'package:contas_do_mes/views/home-page-view.dart';
@@ -11,7 +12,10 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-        create: (_) => ViewModelDBTransactions(RepositoryTransactions()),
+        create: (_) => ViewModeForm(RepositoryTransactions()),
+      ),
+       ChangeNotifierProvider(
+        create: (_) => ViewModelTransaction(RepositoryTransactions()),
       )
     ],
     child: const MyApp(),

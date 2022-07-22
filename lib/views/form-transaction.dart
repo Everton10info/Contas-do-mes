@@ -19,7 +19,7 @@ class _FormTransactionState extends State<FormTransaction> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var heigth = MediaQuery.of(context).size.height;
-    var viewModeDb = Provider.of<ViewModelDBTransactions>(context);
+    var viewModelForm = Provider.of<ViewModeForm>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastre'),
@@ -39,8 +39,8 @@ class _FormTransactionState extends State<FormTransaction> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                TextField(controller: viewModeDb.name),
-                TextFormField(controller: viewModeDb.value),
+                TextField(controller: viewModelForm.name),
+                TextFormField(controller: viewModelForm.value),
                 IconButton(
                     onPressed: () async {
                       DateTime? temp = await showDatePicker(
@@ -49,17 +49,17 @@ class _FormTransactionState extends State<FormTransaction> {
                         firstDate: DateTime(2020),
                         lastDate: DateTime(2025),
                       );
-                      viewModeDb.dueDateTime = temp.toString();
+                      viewModelForm.dueDateTime = temp.toString();
                     },
                     icon: const Icon(Icons.dataset)),
                 ElevatedButton(
                   onPressed: () {
                   
-                   viewModeDb.edition?viewModeDb.editionTransactions(): viewModeDb.setTransactions();
-                    viewModeDb.dueDateTime = '';
-                    viewModeDb.name.text = '';
-                    viewModeDb.value.text = '';
-                    viewModeDb.dueDateTime = '';
+                   viewModelForm.edition?viewModelForm.editionTransactions(): viewModelForm.setTransactions();
+                    viewModelForm.dueDateTime = '';
+                    viewModelForm.name.text = '';
+                    viewModelForm.value.text = '';
+                    viewModelForm.dueDateTime = '';
 
                     Navigator.of(context).pop();
                   },

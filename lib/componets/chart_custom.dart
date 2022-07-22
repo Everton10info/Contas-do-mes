@@ -65,7 +65,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
     Widget text;
     switch (value.toInt()) {
       case 2:
-        text = const Text('MAR', style: style);
+        text = const Text('MAR', style: style); ///aqui colocarei os meses dinamicos  usando a data atual e dois meses atras
         break;
       case 5:
         text = const Text('JUN', style: style);
@@ -162,7 +162,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
       minY: 0,
       maxY: 10,
       lineBarsData: [
-        LineChartBarData(
+        LineChartBarData( //aqui os valores dynamicos serão inseridos pra mostrar gatos
           spots: const [
             FlSpot(0, 4),
           
