@@ -1,11 +1,9 @@
+
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:contas_do_mes/componets/chart_custom.dart';
 import 'package:contas_do_mes/views/home-page-view.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:page_transition/page_transition.dart';
 
-import 'all-list-view.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);

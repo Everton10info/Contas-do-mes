@@ -1,10 +1,19 @@
 import 'package:dio/dio.dart';
-void getHttp(String url, String coin) async {
-  try {
-    var response = await Dio().get('$url+$coin');
-    print(response.data);
-  } catch (e) {
-    print(e);
+import 'package:flutter/cupertino.dart';
+
+
+class Services {
+
+  Future getHttp(String url) async {
+    var response;
+    try {
+      response = await Dio().get(url);
+      debugPrint(response.data);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    debugPrint('${response.data}');
+    return response.data;
   }
 }
 

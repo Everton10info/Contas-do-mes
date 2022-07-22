@@ -1,8 +1,6 @@
 
 
 abstract class IRepositoryDb {
-
-
   final  db;
 
   IRepositoryDb(this.db);

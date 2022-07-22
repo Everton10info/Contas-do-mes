@@ -1,6 +1,8 @@
 
 
 import 'package:contas_do_mes/componets/chart_custom.dart';
+import 'package:contas_do_mes/repositorys/repository_coins.dart';
+import 'package:contas_do_mes/services/web_source.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'all-list-view.dart';
@@ -15,7 +17,7 @@ class HomePageView extends StatefulWidget {
 
 class _HomePageViewState extends State<HomePageView> {
 final controller = PageController(initialPage: 1);
-
+var rp =RepositoryCoins();
   @override
   Widget build(BuildContext context) {
 
@@ -86,8 +88,12 @@ final controller = PageController(initialPage: 1);
                   children: [
                     
                     Card(
-                      child: IconButton(onPressed: () {}, icon: Icon(Icons.money_off_outlined)),
+                      child: IconButton(onPressed: () {
+                          rp.getDataWeb(rp.coins[2]);
+                      }, icon: Icon(Icons.money_off_outlined)),
                     ),
+
+                    Text(rp.coinData?.high??'' ),
                     Card(
                       child: IconButton(
                           onPressed: () {}, icon: Icon(Icons.money_off_csred_rounded)),

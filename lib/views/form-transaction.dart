@@ -1,4 +1,5 @@
 
+import 'package:contas_do_mes/repositorys/repository_coins.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -53,7 +54,7 @@ class _FormTransactionState extends State<FormTransaction> {
                     icon: const Icon(Icons.dataset)),
                 ElevatedButton(
                   onPressed: () {
-               
+                  
                    viewModeDb.edition?viewModeDb.editionTransactions(): viewModeDb.setTransactions();
                     viewModeDb.dueDateTime = '';
                     viewModeDb.name.text = '';
