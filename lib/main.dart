@@ -1,3 +1,4 @@
+import 'package:contas_do_mes/repositorys/repository_coins.dart';
 import 'package:contas_do_mes/repositorys/repository_transactions.dart';
 import 'package:contas_do_mes/view-models/view_model_form.dart';
 import 'package:contas_do_mes/view-models/view_model_transaction.dart';
@@ -6,6 +7,7 @@ import 'package:contas_do_mes/views/form-transaction.dart';
 import 'package:contas_do_mes/views/home-page-view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'view-models/view_model_coins.dart';
 import 'views/splash-page.dart';
 
 void main() {
@@ -14,8 +16,11 @@ void main() {
       ChangeNotifierProvider(
         create: (_) => ViewModeForm(RepositoryTransactions()),
       ),
-       ChangeNotifierProvider(
+      ChangeNotifierProvider(
         create: (_) => ViewModelTransaction(RepositoryTransactions()),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => ViewModelCoins(RepositoryCoins()),
       )
     ],
     child: const MyApp(),
