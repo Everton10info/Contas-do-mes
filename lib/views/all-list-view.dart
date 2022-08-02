@@ -15,7 +15,7 @@ class AllListsPage extends StatefulWidget {
   @override
   State<AllListsPage> createState() => _AllListsPageState();
 }
-var rp =RepositoryCoins();
+
 class _AllListsPageState extends State<AllListsPage> {
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class _AllListsPageState extends State<AllListsPage> {
                 animationDuration: Duration(seconds: 3),
               ),
               onPressed: () {
-                  rp.getDataWeb(rp.coins[0]);
+                
                 Navigator.of(context).push(PageTransition(
                   curve: Curves.decelerate,
                   duration: const Duration(seconds: 2),

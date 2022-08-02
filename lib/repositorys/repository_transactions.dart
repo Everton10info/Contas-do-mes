@@ -8,8 +8,6 @@ class RepositoryTransactions implements IRepositoryDb {
   @override
   get db => _db;
 
-
-
   @override
   Future deleteTransactions(id) async {
     var database = await _db.database;

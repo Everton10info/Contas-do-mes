@@ -1,3 +1,3 @@
 abstract class IHttpClient {
-  Future getDataWeb( data);
+  Future getDataWeb(data);
 }

@@ -1,10 +1,10 @@
-
-
 import 'package:contas_do_mes/componets/chart_custom.dart';
 import 'package:contas_do_mes/repositorys/repository_coins.dart';
 import 'package:contas_do_mes/services/web_source.dart';
+import 'package:contas_do_mes/view-models/view_model_coins.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'all-list-view.dart';
 
 class HomePageView extends StatefulWidget {
@@ -12,15 +12,14 @@ class HomePageView extends StatefulWidget {
   static String pageName = '/homePageView';
   @override
   State<HomePageView> createState() => _HomePageViewState();
-
 }
 
 class _HomePageViewState extends State<HomePageView> {
-final controller = PageController(initialPage: 1);
-var rp =RepositoryCoins();
+  final controller = PageController(initialPage: 1);
+
   @override
   Widget build(BuildContext context) {
-
+    var coins = Provider.of<ViewModelCoins>(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -68,10 +67,12 @@ var rp =RepositoryCoins();
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    
+                    controller: coins.value,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Color.fromARGB(255, 243, 248, 248))),
-                      hintText: 'Tell us about yourself',
+                      hintText: '00.00',
                       labelText: 'valor',
                       prefixIcon: Icon(
                         Icons.price_change,
@@ -86,49 +87,63 @@ var rp =RepositoryCoins();
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    
-                    Card(
-                      child: IconButton(onPressed: () {
-                          rp.getDataWeb(rp.coins[2]);
-                      }, icon: Icon(Icons.money_off_outlined)),
+                     SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: GestureDetector(
+                       onTap: () => coins.getCoins(0),
+                        child: Card(
+                          child: coins.coinsValueReturn !=0?(Text(coins.coinsValueReturn.toStringAsFixed(2), textAlign: TextAlign.center,)): const Icon(Icons.money_off_outlined),
+                        ),
+                      ),
                     ),
-
-                    Text(rp.coinData?.high??'' ),
-                    Card(
-                      child: IconButton(
-                          onPressed: () {}, icon: Icon(Icons.money_off_csred_rounded)),
+                     SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: GestureDetector(
+                       onTap: () => coins.getCoins(1),
+                        child: Card(
+                          child: coins.coinsValueReturn !=0?(Text(coins.coinsValueReturn.toStringAsFixed(2), textAlign: TextAlign.center,)): const Icon(Icons.money_off_outlined),
+                        ),
+                      ),
                     ),
-                    Card(
-                      child: IconButton(
-                          onPressed: () {}, icon: Icon(Icons.money_off_csred_rounded)),
+                    SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: GestureDetector(
+                       onTap: () => coins.getCoins(2),
+                        child: Card(
+                          child: coins.coinsValueReturn !=0?(Text(coins.coinsValueReturn.toStringAsFixed(2), textAlign: TextAlign.center,)): const Icon(Icons.money_off_outlined),
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              SizedBox(height: height*.08,),
+                SizedBox(
+                  height: height * .08,
+                ),
               ],
             ),
             SizedBox(
               height: height * 0.3,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-            itemCount: 4,
+                itemCount: 4,
                 itemBuilder: (BuildContext context, int index) {
-                 
-                  return  InkWell(
-                    onTap: (){
-                     Navigator.of(context).push(PageTransition(
+                  return InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(PageTransition(
                         curve: Curves.decelerate,
                         duration: const Duration(seconds: 2),
-                      type: PageTransitionType.scale,
-                      alignment: Alignment.center,
-                       child:const AllListsPage(),
-                     ));
+                        type: PageTransitionType.scale,
+                        alignment: Alignment.center,
+                        child: const AllListsPage(),
+                      ));
                     },
                     child: SizedBox(
-                      height: height* 0.06,
-                      width: width *0.65,
+                      height: height * 0.06,
+                      width: width * 0.65,
                       child: const Card(
-                       
                         child: Text('data'),
                       ),
                     ),
@@ -141,6 +156,4 @@ var rp =RepositoryCoins();
       ),
     );
   }
-  
-  
 }
