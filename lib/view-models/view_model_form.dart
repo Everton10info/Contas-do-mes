@@ -3,7 +3,6 @@ import 'package:contas_do_mes/repositorys/repository_transactions.dart';
 import 'package:contas_do_mes/view-models/view_model_transaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../repositorys/repository_database _interface.dart';
 
 enum CurrentSituation { payOut, owing, received, toReceive }

@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../view-models/view_model_transaction.dart';
 
-class DriverCard extends StatelessWidget {
-  const DriverCard({
+class TransactionCard extends StatelessWidget {
+  const TransactionCard({
     Key? key,
     required this.index,
   }) : super(key: key);

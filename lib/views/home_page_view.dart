@@ -1,11 +1,9 @@
 import 'package:contas_do_mes/componets/chart_custom.dart';
-import 'package:contas_do_mes/repositorys/repository_coins.dart';
-import 'package:contas_do_mes/services/web_source.dart';
 import 'package:contas_do_mes/view-models/view_model_coins.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'all-list-view.dart';
+import 'all_list_view.dart';
 
 
 class HomePageView extends StatefulWidget {
@@ -68,7 +66,7 @@ class _HomePageViewState extends State<HomePageView> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    keyboardType: const TextInputType.numberWithOptions(decimal: true, ),
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true, signed: true),
                     controller: coins.value,
                     decoration: const InputDecoration(
                       

@@ -1,11 +1,11 @@
 import 'package:provider/provider.dart';
+import '../componets/header.dart';
+import '../componets/transaction_card.dart';
 import '../view-models/view_model_transaction.dart';
-import './constants.dart';
-import './driver_card.dart';
+import '../constants.dart';
 import 'package:flutter/material.dart';
-import 'header.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:contas_do_mes/views/form-transaction.dart';
+import 'package:contas_do_mes/views/form_transaction.dart';
 
 class AllListsPage extends StatelessWidget {
   const AllListsPage({Key? key}) : super(key: key);
@@ -73,7 +73,7 @@ class AllListsPage extends StatelessWidget {
                   child: Material(
                     color: Colors.transparent,
                     child: Text(
-                      'Todas trasações',
+                      'Lista Geral',
                       style: TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
@@ -184,7 +184,7 @@ class _DriversListState extends State<_DriversList> {
           viewModelTransaction.allList.length,
           (index) => Column(
             children: [
-              DriverCard(
+              TransactionCard(
                 index: index,
               ),
               AnimatedSize(

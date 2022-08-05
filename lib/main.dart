@@ -3,13 +3,13 @@ import 'package:contas_do_mes/repositorys/repository_transactions.dart';
 import 'package:contas_do_mes/view-models/view_model_form.dart';
 import 'package:contas_do_mes/view-models/view_model_transaction.dart';
 import 'package:contas_do_mes/views/all-list-view11.dart';
-import 'package:contas_do_mes/views/form-transaction.dart';
-import 'package:contas_do_mes/views/home-page-view.dart';
+import 'package:contas_do_mes/views/form_transaction.dart';
+import 'package:contas_do_mes/views/home_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'view-models/view_model_coins.dart';
-import 'views/all-list-view.dart';
-import 'views/splash-page.dart';
+import 'views/all_list_view.dart';
+import 'views/splash_page.dart';
 
 void main() {
   runApp(MultiProvider(
