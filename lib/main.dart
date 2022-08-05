@@ -2,19 +2,20 @@ import 'package:contas_do_mes/repositorys/repository_coins.dart';
 import 'package:contas_do_mes/repositorys/repository_transactions.dart';
 import 'package:contas_do_mes/view-models/view_model_form.dart';
 import 'package:contas_do_mes/view-models/view_model_transaction.dart';
-import 'package:contas_do_mes/views/all-list-view.dart';
+import 'package:contas_do_mes/views/all-list-view11.dart';
 import 'package:contas_do_mes/views/form-transaction.dart';
 import 'package:contas_do_mes/views/home-page-view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'view-models/view_model_coins.dart';
+import 'views/all-list-view.dart';
 import 'views/splash-page.dart';
 
 void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-        create: (_) => ViewModeForm(RepositoryTransactions()),
+        create: (_) => ViewModeFormTransaction(RepositoryTransactions()),
       ),
       ChangeNotifierProvider(
         create: (_) => ViewModelTransaction(RepositoryTransactions()),

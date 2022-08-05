@@ -8,8 +8,8 @@ import '../repositorys/repository_database _interface.dart';
 
 enum CurrentSituation { payOut, owing, received, toReceive }
 
-class ViewModeForm extends ChangeNotifier {
-  ViewModeForm(this.repository);
+class ViewModeFormTransaction extends ChangeNotifier {
+  ViewModeFormTransaction(this.repository);
 
   IRepositoryDb repository;
   TextEditingController name = TextEditingController();
@@ -31,7 +31,6 @@ class ViewModeForm extends ChangeNotifier {
       valor: double.parse(value.text),
     );
     await repository.insertTransaction(setTransaction!);
-    // viewModelTransaction.allList.clear();
     viewModelTransaction.allList = await repository.getAllTransactions();
 
     notifyListeners();

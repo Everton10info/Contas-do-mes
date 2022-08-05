@@ -11,6 +11,7 @@ class RepositoryCoins implements IHttpClient {
   @override
   Future <String>getDataWeb(coin) async {
     var response = await _services.getHttp(url+coin);
+    print('tetestsetserteses');
     coinData = Coins.fromjson(response[0]);
   
     return coinData!.high;

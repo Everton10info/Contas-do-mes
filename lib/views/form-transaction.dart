@@ -19,7 +19,7 @@ class _FormTransactionState extends State<FormTransaction> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var heigth = MediaQuery.of(context).size.height;
-    var viewModelForm = Provider.of<ViewModeForm>(context);
+    var viewModelForm = Provider.of<ViewModeFormTransaction>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastre'),

@@ -13,12 +13,9 @@ class ViewModelTransaction extends ChangeNotifier {
   List<TransactionModel> allList = [];
 
   fetchAll() async {
-    //allList.clear();
     allList = await repository.getAllTransactions();
     notifyListeners();
   }
-
- 
 
   void deleteTransaction(int id) async {
     await repository.deleteTransactions(id);

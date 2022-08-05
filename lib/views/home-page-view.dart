@@ -7,6 +7,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'all-list-view.dart';
 
+
 class HomePageView extends StatefulWidget {
   const HomePageView({Key? key}) : super(key: key);
   static String pageName = '/homePageView';
@@ -67,18 +68,21 @@ class _HomePageViewState extends State<HomePageView> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true, ),
                     controller: coins.value,
                     decoration: const InputDecoration(
+                      
                       border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 243, 248, 248))),
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 243, 248, 248),
+                        ),
+                      ),
                       hintText: '00.00',
                       labelText: 'valor',
                       prefixIcon: Icon(
                         Icons.price_change,
                         color: Colors.blueAccent,
                       ),
-                      prefixText: ' ',
                       suffixText: 'R\$',
                       suffixStyle: TextStyle(color: Colors.blueAccent, fontSize: 18),
                     ),
@@ -87,23 +91,21 @@ class _HomePageViewState extends State<HomePageView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                     SizedBox(
+                    SizedBox(
                       width: 60,
                       height: 60,
                       child: GestureDetector(
-                       onTap: () => coins.getCoins(0),
+                        onTap: () {
+                        coins.getCoins(0);
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        },
                         child: Card(
-                          child: coins.coinsValueReturn !=0?(Text(coins.coinsValueReturn.toStringAsFixed(2), textAlign: TextAlign.center,)): const Icon(Icons.money_off_outlined),
-                        ),
-                      ),
-                    ),
-                     SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: GestureDetector(
-                       onTap: () => coins.getCoins(1),
-                        child: Card(
-                          child: coins.coinsValueReturn !=0?(Text(coins.coinsValueReturn.toStringAsFixed(2), textAlign: TextAlign.center,)): const Icon(Icons.money_off_outlined),
+                          child: coins.coinsValueReturn != 0
+                              ? (Text(
+                                  coins.coinsValueReturn.toStringAsFixed(2),
+                                  textAlign: TextAlign.center,
+                                ))
+                              : const Icon(Icons.money_off_outlined),
                         ),
                       ),
                     ),
@@ -111,9 +113,35 @@ class _HomePageViewState extends State<HomePageView> {
                       width: 60,
                       height: 60,
                       child: GestureDetector(
-                       onTap: () => coins.getCoins(2),
+                       onTap: () {
+                        coins.getCoins(1);
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        },
                         child: Card(
-                          child: coins.coinsValueReturn !=0?(Text(coins.coinsValueReturn.toStringAsFixed(2), textAlign: TextAlign.center,)): const Icon(Icons.money_off_outlined),
+                          child: coins.coinsValueReturn != 0
+                              ? (Text(
+                                  coins.coinsValueReturn.toStringAsFixed(2),
+                                  textAlign: TextAlign.center,
+                                ))
+                              : const Icon(Icons.money_off_outlined),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: GestureDetector(
+                        onTap: () {
+                        coins.getCoins(0);
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        },
+                        child: Card(
+                          child: coins.coinsValueReturn != 0
+                              ? (Text(
+                                  coins.coinsValueReturn.toStringAsFixed(2),
+                                  textAlign: TextAlign.center,
+                                ))
+                              : const Icon(Icons.money_off_outlined),
                         ),
                       ),
                     ),
