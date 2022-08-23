@@ -5,6 +5,7 @@ class TransactionModel {
   String? dueDate;
   String typeTransaction;
   double valor;
+  int paidOut;
 
   TransactionModel({
     required this.id,
@@ -13,6 +14,7 @@ class TransactionModel {
     required this.dueDate,
     required this.typeTransaction,
     required this.valor,
+    required this.paidOut
   });
 
   Map<String, dynamic> toMap() => {
@@ -22,6 +24,8 @@ class TransactionModel {
         'dueDate': dueDate,
         'typeTransaction': typeTransaction,
         'valor': valor,
+        'paidOut': paidOut,
+       
       };
 
   factory TransactionModel.fromjson(Map<String, dynamic> map) {
@@ -32,6 +36,7 @@ class TransactionModel {
       dueDate: map['dueDate'],
       typeTransaction: map['typeTransaction'],
       valor: map['valor'],
+      paidOut: map['paidOut']
     );
   }
 }

@@ -54,4 +54,9 @@ class RepositoryTransactions implements IRepositoryDb {
       whereArgs: [tr.id],
     );
   }
+  
+  @override
+  set db(_db) {
+
+  }
 }

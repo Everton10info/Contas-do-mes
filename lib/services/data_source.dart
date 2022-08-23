@@ -11,6 +11,7 @@ class TransactionsDataBase {
   String dueDate = 'dueDate';
   String typeTransaction = 'typeTransaction';
   String valor = 'valor';
+  String paidOut = 'paidOut';
 
   Database? _database;
 
@@ -36,6 +37,7 @@ class TransactionsDataBase {
         '$date DATA,'
         '$dueDate DATA,'
         '$typeTransaction TEXT,'
-        '$valor DOUBLE)');
+        '$valor DOUBLE,'
+        '$paidOut INTEGER )');
   }
 }

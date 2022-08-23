@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../repositorys/repository_database _interface.dart';
 
-enum CurrentSituation { payOut, owing, received, toReceive }
+enum CurrentSituation { paidOutOut, owing, received, toReceive }
 
 class ViewModelTransaction extends ChangeNotifier {
   ViewModelTransaction(this.repository);

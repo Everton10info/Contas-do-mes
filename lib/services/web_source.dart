@@ -1,20 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-
 
 class Services {
-
   Future getHttp(String url) async {
-    var response;
     try {
+      Response? response;
       response = await Dio().get(url);
-      debugPrint(response.data);
+
+      return response.data;
     } catch (e) {
-      debugPrint(e.toString());
+      e.toString();
     }
-    debugPrint('${response.data}');
-    return response.data;
   }
 }
-
-

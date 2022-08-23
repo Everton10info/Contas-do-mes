@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../repositorys/repository_database _interface.dart';
 
-enum CurrentSituation { payOut, owing, received, toReceive }
+enum CurrentSituation { paidOutOut, owing, received, toReceive }
 
 class ViewModeFormTransaction extends ChangeNotifier {
   ViewModeFormTransaction(this.repository);
@@ -16,6 +16,7 @@ class ViewModeFormTransaction extends ChangeNotifier {
   String? currentDate = DateTime.now().toString();
   String? dueDateTime;
   String? type;
+  int paidOut = 0;
   TransactionModel? setTransaction;
   bool edition = false;
   var viewModelTransaction = ViewModelTransaction(RepositoryTransactions());
@@ -28,6 +29,7 @@ class ViewModeFormTransaction extends ChangeNotifier {
       dueDate: dueDateTime,
       typeTransaction: 'output',
       valor: double.parse(value.text),
+      paidOut: paidOut,
     );
     await repository.insertTransaction(setTransaction!);
     viewModelTransaction.allList = await repository.getAllTransactions();
@@ -47,6 +49,7 @@ class ViewModeFormTransaction extends ChangeNotifier {
       dueDate: tr.dueDate,
       typeTransaction: tr.typeTransaction,
       valor: double.parse(value.text),
+      paidOut: tr.paidOut,
     );
 
     notifyListeners();
@@ -62,6 +65,7 @@ class ViewModeFormTransaction extends ChangeNotifier {
       dueDate: dueDateTime ?? tr.dueDate,
       typeTransaction: tr.typeTransaction,
       valor: double.parse(value.text),
+      paidOut: tr.paidOut,
     );
     viewModelTransaction.allList.clear();
     await repository.updateTransaction(editionUpdate);

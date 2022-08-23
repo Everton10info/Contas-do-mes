@@ -4,22 +4,52 @@ import 'package:flutter/material.dart';
 
 class ViewModelCoins extends ChangeNotifier {
   final RepositoryCoins _repositporyCoins;
-
   ViewModelCoins(this._repositporyCoins);
 
   TextEditingController value = TextEditingController();
-  var coinsValueReturn = 0.0;
+  var resultLabel = '';
+  var resultValue = '';
+  bool loader = false;
 
-  getCoins<String>(index) async {
-    coinsValueReturn = 0.0;
-    var resultRequestWeb = await _repositporyCoins.getDataWeb(_repositporyCoins.coins[index]);
-    var valueCoins = double.parse(resultRequestWeb);
-    var valueDouble = double.tryParse(value.text);
-    var result = valueCoins * valueDouble!;
-
-    resultRequestWeb = '';
-    coinsValueReturn = result;
+  getCoins(index) async {
+    loader = true;
     notifyListeners();
-    return coinsValueReturn;
+    var resultRequestWeb = await _repositporyCoins.getDataWeb(_repositporyCoins.coins[index]);
+    if (value.text.isNotEmpty && resultRequestWeb != null) {
+      var valueCoins = double.parse(resultRequestWeb.high);
+      var valueDouble = double.parse(value.text);
+
+      switch (index) {
+        case 0:
+          var result = valueCoins * valueDouble;
+          resultValue = '${result.toStringAsFixed(2)} R\$';
+          resultLabel = '${resultRequestWeb.name}: ';
+          loader = false;
+          notifyListeners();
+          break;
+
+        case 1:
+          var result = valueCoins * valueDouble;
+          resultValue = '${result.toStringAsFixed(2)} R\$';
+          resultLabel = '${resultRequestWeb.name}: ';
+          loader = false;
+          notifyListeners();
+          break;
+
+        case 2:
+          var result = valueCoins * valueDouble;
+          resultValue = '${result.toStringAsFixed(2)} R\$';
+          resultLabel = '${resultRequestWeb.name}: ';
+          loader = false;
+          notifyListeners();
+
+          break;
+      }
+    } else {
+      resultLabel = '';
+      resultValue = '';
+      loader = false;
+      notifyListeners();
+    }
   }
 }

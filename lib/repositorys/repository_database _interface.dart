@@ -1,7 +1,8 @@
 
+import 'package:contas_do_mes/services/data_source.dart';
 
 abstract class IRepositoryDb {
-  final  db;
+  var db;
 
   IRepositoryDb(this.db);
 

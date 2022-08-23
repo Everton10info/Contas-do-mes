@@ -1,10 +1,11 @@
+import 'dart:ui';
+
 import 'package:contas_do_mes/componets/chart_custom.dart';
 import 'package:contas_do_mes/view-models/view_model_coins.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'all_list_view.dart';
-
 
 class HomePageView extends StatefulWidget {
   const HomePageView({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class _HomePageViewState extends State<HomePageView> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(top: 12.0),
+                  padding: EdgeInsets.only(top: 10.0),
                   child: Text(
                     'Despesas dos últimos meses',
                     style: TextStyle(
@@ -55,6 +56,7 @@ class _HomePageViewState extends State<HomePageView> {
               ],
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
                   'Conversão de moedas',
@@ -66,17 +68,17 @@ class _HomePageViewState extends State<HomePageView> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    keyboardType: const TextInputType.numberWithOptions(decimal: true, signed: true),
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true, signed: true),
                     controller: coins.value,
                     decoration: const InputDecoration(
-                      
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromARGB(255, 243, 248, 248),
                         ),
                       ),
-                      hintText: '00.00',
-                      labelText: 'valor',
+                     // hintText: '00.00',
+                      labelText: 'Valor para converter',
                       prefixIcon: Icon(
                         Icons.price_change,
                         color: Colors.blueAccent,
@@ -90,63 +92,96 @@ class _HomePageViewState extends State<HomePageView> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: GestureDetector(
-                        onTap: () {
-                        coins.getCoins(0);
-                        FocusScope.of(context).requestFocus(FocusNode());
+                      width: 70,
+                      height: 70,
+                      child: InkWell(
+                        onTap: () async {
+                          await coins.getCoins(0);
+                          FocusScope.of(context).requestFocus(FocusNode());
                         },
-                        child: Card(
-                          child: coins.coinsValueReturn != 0
-                              ? (Text(
-                                  coins.coinsValueReturn.toStringAsFixed(2),
-                                  textAlign: TextAlign.center,
-                                ))
-                              : const Icon(Icons.money_off_outlined),
+                        child: const Card(
+                          elevation: 10,
+                          child: Center(
+                            child: Text(
+                              'Dolar',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blueAccent,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
                     SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: GestureDetector(
-                       onTap: () {
-                        coins.getCoins(1);
-                        FocusScope.of(context).requestFocus(FocusNode());
+                      width: 70,
+                      height: 70,
+                      child: InkWell(
+                        onTap: () {
+                          coins.getCoins(1);
+                         
                         },
-                        child: Card(
-                          child: coins.coinsValueReturn != 0
-                              ? (Text(
-                                  coins.coinsValueReturn.toStringAsFixed(2),
-                                  textAlign: TextAlign.center,
-                                ))
-                              : const Icon(Icons.money_off_outlined),
-                        ),
+                        child: const Card(
+                            elevation: 10,
+                            child: Center(
+                              child: Text(
+                                'Euro',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blueAccent,
+                                ),
+                              ),
+                            )),
                       ),
                     ),
                     SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: GestureDetector(
+                      width: 70,
+                      height: 70,
+                      child: InkWell(
                         onTap: () {
-                        coins.getCoins(0);
-                        FocusScope.of(context).requestFocus(FocusNode());
+                          coins.getCoins(2);
+                          
                         },
-                        child: Card(
-                          child: coins.coinsValueReturn != 0
-                              ? (Text(
-                                  coins.coinsValueReturn.toStringAsFixed(2),
-                                  textAlign: TextAlign.center,
-                                ))
-                              : const Icon(Icons.money_off_outlined),
-                        ),
+                        child: const Card(
+                            elevation: 10,
+                            child: Center(
+                              child: Text(
+                                'Bitcoin',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blueAccent,
+                                ),
+                              ),
+                            )),
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: height * .08,
+                  height: height * .015,
+                ),
+
+                Consumer<ViewModelCoins>(
+                  builder: (context, coins, child) {
+                    return SizedBox(
+                  child: coins.loader
+                      ? const CircularProgressIndicator()
+                      : Column(
+                          children: [
+                            Text(coins.resultLabel,
+                                style: const TextStyle(
+                                    color: Colors.black87, fontWeight: FontWeight.w500)),
+                            Text(coins.resultValue,
+                                style: const TextStyle(
+                                    color: Colors.blueAccent, fontWeight: FontWeight.w700)),
+                          ],
+                        ),
+                );
+                  }),
+                
+                
+                SizedBox(
+                  height: height * .02,
                 ),
               ],
             ),

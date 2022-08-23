@@ -20,11 +20,8 @@ class Header extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(Icons.money),
-             /*  Image.asset(
-                'assets/f1.png',
-                height: 15,
-              ), */
+              const Icon(Icons.money),
+            
               Icon(
                 Icons.arrow_back,
                 color: isDark ? Colors.black : Colors.white,

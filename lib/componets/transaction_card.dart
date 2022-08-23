@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +9,6 @@ class TransactionCard extends StatelessWidget {
     required this.index,
   }) : super(key: key);
 
-  
   final int index;
 
   @override
@@ -19,7 +17,7 @@ class TransactionCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 71, 35, 230),
+        color: Colors.blueAccent,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -65,16 +63,20 @@ class TransactionCard extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                   /*  image: DecorationImage(
-                      image: AssetImage(),
-                    ), */
-                  ),
-                ),
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Center(
+                        child: Text(
+                      'R\$ ${viewModelTransaction.allList[index].valor.toStringAsFixed(2)}',
+                      style: const TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ))),
               ],
             ),
           ),
@@ -95,7 +97,7 @@ class TransactionCard extends StatelessWidget {
                 backgroundColor: Colors.grey,
               ),
               SizedBox(
-                width: 8,
+                   width : 8,
               ),
               Chip(
                 label: Text(
