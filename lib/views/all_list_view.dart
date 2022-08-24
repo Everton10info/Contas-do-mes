@@ -53,8 +53,9 @@ class AllListsPage extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: Image.asset(
-                  '',
+                  'assets/images/lago.jpg',
                   width: size.width * .8,
+                  height: 80,
                 ),
               ),
             ),
@@ -189,7 +190,7 @@ class _DriversListState extends State<_DriversList> {
               ),
               AnimatedSize(
                 duration: duration,
-                curve: Curves.ease,
+                curve: Curves.linear,
                 child: SizedBox(
                   height: isScrolling ? 40 : 16,
                 ),

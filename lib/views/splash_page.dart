@@ -1,6 +1,7 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:contas_do_mes/views/home_page_view.dart';
+import 'package:contas_do_mes/views/login-view.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -18,7 +19,7 @@ class SplashPage extends StatelessWidget {
         duration: 1500,
         splash: Lottie.asset('assets/images/money.json'),
         splashTransition: SplashTransition.fadeTransition,
-        nextScreen: const HomePageView(),
+        nextScreen: const LoginView(),
         splashIconSize: 200.0,
       ),
     );

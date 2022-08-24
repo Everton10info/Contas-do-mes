@@ -5,6 +5,7 @@ import 'package:contas_do_mes/view-models/view_model_transaction.dart';
 import 'package:contas_do_mes/views/all-list-view11.dart';
 import 'package:contas_do_mes/views/form_transaction.dart';
 import 'package:contas_do_mes/views/home_page_view.dart';
+import 'package:contas_do_mes/views/login-view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'view-models/view_model_coins.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         HomePageView.pageName: (context) => const HomePageView(),
         FormTransaction.pageName: (context) => const FormTransaction(),
         AllListsPage.pageName: (context) => const AllListsPage(),
+        LoginView.pageName :(context) => const LoginView(),
         // 'list-output':(context) => ListOutput();
         // 'list-input':(context)=> ListInput();
       },

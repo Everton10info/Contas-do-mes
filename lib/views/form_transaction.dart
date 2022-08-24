@@ -12,6 +12,7 @@ class FormTransaction extends StatefulWidget {
 }
 
 class _FormTransactionState extends State<FormTransaction> {
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -24,22 +25,79 @@ class _FormTransactionState extends State<FormTransaction> {
       body: Column(
         children: [
           SizedBox(
-            height: heigth * 0.5,
+            height: heigth * 0.52,
             child: Card(
               elevation: 20,
               margin: EdgeInsetsDirectional.only(
                   top: heigth * 0.05,
                   start: width * 0.05,
                   end: width * 0.05,
-                  bottom: heigth * 0.05),
+                 /*  bottom: heigth * 0.02 */),
               shadowColor: Theme.of(context).cardColor,
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    TextField(controller: viewModelForm.name),
-                    TextFormField(controller: viewModelForm.value),
+                    SizedBox(
+                      height: 50,
+                      child: TextFormField(
+                        controller: viewModelForm.name,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 243, 248, 248),
+                      ),
+                  ),
+                  labelText: 'Transação',
+                ),
+              ),
+                    ),
+              const SizedBox(height: 10,),
+               SizedBox(
+                 height: 50,
+                 child: TextFormField(
+                   keyboardType: const TextInputType.numberWithOptions(),
+                        controller: viewModelForm.value,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 243, 248, 248),
+                      ),
+                    ),
+                    labelText: 'Valor',
+                  ),
+              ),
+               ),
+                  
+                    SizedBox(
+                      width: width * 0.5,
+                      child: Column(
+                        
+                        children: [
+                          RadioListTile<String>(
+                            title: const Text('Entrada'),
+                            value: 'input',
+                            groupValue: viewModelForm.type,
+                            onChanged: (String? value) {
+                              setState(() {
+                                viewModelForm.type = value;
+                              });
+                            },
+                          ),
+                          RadioListTile<String>(
+                            title: const Text('Saída'),
+                            value: 'output',
+                            groupValue: viewModelForm.type,
+                            onChanged: (String? value) {
+                              setState(() {
+                                viewModelForm.type = value;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
                     IconButton(
                         onPressed: () async {
                           DateTime? temp = await showDatePicker(
@@ -50,11 +108,13 @@ class _FormTransactionState extends State<FormTransaction> {
                           );
                           viewModelForm.dueDateTime = temp.toString();
                         },
-                        icon: const Icon(Icons.dataset)),
+                        icon: const Icon(Icons.date_range)),
+                        Spacer(),
                     ElevatedButton(
                       onPressed: () {
-                      
-                       viewModelForm.edition?viewModelForm.editionTransactions(): viewModelForm.setTransactions();
+                        viewModelForm.edition
+                            ? viewModelForm.editionTransactions()
+                            : viewModelForm.setTransactions();
                         viewModelForm.dueDateTime = '';
                         viewModelForm.name.text = '';
                         viewModelForm.value.text = '';
@@ -70,11 +130,11 @@ class _FormTransactionState extends State<FormTransaction> {
             ),
           ),
 
-          Container(
+          /*  Container(
             width: 400,
             height: 200,
             child: Lottie.asset('assets/images/animation.json'),
-          )
+          ) */
         ],
       ),
     );
