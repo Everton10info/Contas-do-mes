@@ -1,16 +1,8 @@
-# contas_do_mes
+# Contas do mês
 
-A new Flutter project.
+Aplicação Flutter em construção que gerência contas mensais, entradas , saídas e pagamentos. Exibe gráfico dos últimos três meses, e faz converão de moedas. Uma verão 2.0.0 do meu antigo app, Caixa pessoal, totalmente modificado.
 
-## Getting Started
+# Logo terá imagens ilustrativas
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Utilizado sqlite para persistências dos dados locais, autenticação com firebase e persistência no Cloud Firestore.
+Injeção de dependência com Provider e algumas animações usando lottie. Arquitetura MVVM.  
