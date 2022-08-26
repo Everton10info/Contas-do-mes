@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class Services {
+class ServiceWeb {
   Future getHttp(String url) async {
     try {
       Response? response;

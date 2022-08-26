@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../view-models/view_model_form.dart';
 
@@ -12,7 +11,6 @@ class FormTransaction extends StatefulWidget {
 }
 
 class _FormTransactionState extends State<FormTransaction> {
-
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -29,51 +27,51 @@ class _FormTransactionState extends State<FormTransaction> {
             child: Card(
               elevation: 20,
               margin: EdgeInsetsDirectional.only(
-                  top: heigth * 0.05,
-                  start: width * 0.05,
-                  end: width * 0.05,
-                 /*  bottom: heigth * 0.02 */),
+                top: heigth * 0.05,
+                start: width * 0.05,
+                end: width * 0.05, /*  bottom: heigth * 0.02 */
+              ),
               shadowColor: Theme.of(context).cardColor,
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
-                 crossAxisAlignment: CrossAxisAlignment.stretch,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     SizedBox(
                       height: 50,
                       child: TextFormField(
                         controller: viewModelForm.name,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(255, 243, 248, 248),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 243, 248, 248),
+                            ),
+                          ),
+                          labelText: 'Transação',
+                        ),
                       ),
-                  ),
-                  labelText: 'Transação',
-                ),
-              ),
                     ),
-              const SizedBox(height: 10,),
-               SizedBox(
-                 height: 50,
-                 child: TextFormField(
-                   keyboardType: const TextInputType.numberWithOptions(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 50,
+                      child: TextFormField(
+                        keyboardType: const TextInputType.numberWithOptions(),
                         controller: viewModelForm.value,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(255, 243, 248, 248),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 243, 248, 248),
+                            ),
+                          ),
+                          labelText: 'Valor',
+                        ),
                       ),
                     ),
-                    labelText: 'Valor',
-                  ),
-              ),
-               ),
-                  
                     SizedBox(
                       width: width * 0.5,
                       child: Column(
-                        
                         children: [
                           RadioListTile<String>(
                             title: const Text('Entrada'),
@@ -109,7 +107,7 @@ class _FormTransactionState extends State<FormTransaction> {
                           viewModelForm.dueDateTime = temp.toString();
                         },
                         icon: const Icon(Icons.date_range)),
-                        Spacer(),
+                    Spacer(),
                     ElevatedButton(
                       onPressed: () {
                         viewModelForm.edition

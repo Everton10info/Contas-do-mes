@@ -26,34 +26,40 @@ class _LoginViewState extends State<LoginView> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
            
             children: [
-              const SizedBox(height: 70,),
+              const SizedBox(height: 50,),
                SizedBox(
            
-            height: 100,
+            height: 120,
             child: Lottie.asset('assets/images/cadeado.json'),
           ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(255, 243, 248, 248),
+              SizedBox(
+                height: 50,
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 243, 248, 248),
+                      ),
                     ),
+                    labelText: 'email',
                   ),
-                  labelText: 'email',
                 ),
               ),
               const SizedBox(
                 height: 15,
               ),
-              TextFormField(
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(255, 243, 248, 248),
+              SizedBox(
+                 height: 50,
+                child: TextFormField(
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 243, 248, 248),
+                      ),
                     ),
+                    labelText: 'senha',
                   ),
-                  labelText: 'senha',
                 ),
               ),
               const SizedBox(

@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-class TransactionsDataBase {
+class ServiceDataBase {
 //variables used for  create  table fields
   String nametable = 'tbl_transaction';
   String id = 'id';
@@ -15,9 +15,9 @@ class TransactionsDataBase {
 
   Database? _database;
 
-  //initialaze db
+  
   Future<Database?> get database async {
-    //if databse null
+
     _database ??= await initialBase();
     return _database;
   }

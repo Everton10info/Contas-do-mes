@@ -1,4 +1,4 @@
-import 'dart:ui';
+
 
 import 'package:contas_do_mes/componets/chart_custom.dart';
 import 'package:contas_do_mes/view-models/view_model_coins.dart';
@@ -19,7 +19,7 @@ class _HomePageViewState extends State<HomePageView> {
 
   @override
   Widget build(BuildContext context) {
-    var coins = Provider.of<ViewModelCoins>(context);
+    var Data = Provider.of<ViewModelCoins>(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -70,7 +70,7 @@ class _HomePageViewState extends State<HomePageView> {
                   child: TextFormField(
                     keyboardType:
                         const TextInputType.numberWithOptions(decimal: true, signed: true),
-                    controller: coins.value,
+                    controller: Data.value,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -96,7 +96,7 @@ class _HomePageViewState extends State<HomePageView> {
                       height: 70,
                       child: InkWell(
                         onTap: () async {
-                          await coins.getCoins(0);
+                          await Data.getCoins(0);
                           FocusScope.of(context).requestFocus(FocusNode());
                         },
                         child: const Card(
@@ -118,7 +118,7 @@ class _HomePageViewState extends State<HomePageView> {
                       height: 70,
                       child: InkWell(
                         onTap: () {
-                          coins.getCoins(1);
+                          Data.getCoins(1);
                          
                         },
                         child: const Card(
@@ -139,7 +139,7 @@ class _HomePageViewState extends State<HomePageView> {
                       height: 70,
                       child: InkWell(
                         onTap: () {
-                          coins.getCoins(2);
+                          Data.getCoins(2);
                           
                         },
                         child: const Card(
@@ -162,16 +162,16 @@ class _HomePageViewState extends State<HomePageView> {
                 ),
 
                 Consumer<ViewModelCoins>(
-                  builder: (context, coins, child) {
+                  builder: (context, Data, child) {
                     return SizedBox(
-                  child: coins.loader
+                  child: Data.loader
                       ? const CircularProgressIndicator()
                       : Column(
                           children: [
-                            Text(coins.resultLabel,
+                            Text(Data.resultLabel,
                                 style: const TextStyle(
                                     color: Colors.black87, fontWeight: FontWeight.w500)),
-                            Text(coins.resultValue,
+                            Text(Data.resultValue,
                                 style: const TextStyle(
                                     color: Colors.blueAccent, fontWeight: FontWeight.w700)),
                           ],

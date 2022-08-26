@@ -1,9 +1,11 @@
 import 'package:contas_do_mes/repositorys/repository_coins.dart';
+import 'package:contas_do_mes/repositorys/repository_http_interface.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ViewModelCoins extends ChangeNotifier {
-  final RepositoryCoins _repositporyCoins;
+  final IHttpClient _repositporyCoins;
   ViewModelCoins(this._repositporyCoins);
 
   TextEditingController value = TextEditingController();
@@ -14,7 +16,7 @@ class ViewModelCoins extends ChangeNotifier {
   getCoins(index) async {
     loader = true;
     notifyListeners();
-    var resultRequestWeb = await _repositporyCoins.getDataWeb(_repositporyCoins.coins[index]);
+    var resultRequestWeb = await _repositporyCoins.getDataWeb(_repositporyCoins.api.url + _repositporyCoins.api.coin[index]);
     if (value.text.isNotEmpty && resultRequestWeb != null) {
       var valueCoins = double.parse(resultRequestWeb.high);
       var valueDouble = double.parse(value.text);

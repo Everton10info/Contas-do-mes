@@ -32,7 +32,7 @@ class AllListsPage extends StatelessWidget {
           // White background
           TweenAnimationBuilder<double>(
             duration: duration,
-            tween: Tween(begin: 1, end: 0),
+            tween: Tween(begin: 2, end: 0),
             builder: (context, double value, _) {
               return Hero(
                 tag: 'all-container',
@@ -45,30 +45,16 @@ class AllListsPage extends StatelessWidget {
               );
             },
           ),
-          // Pilot image
-          Transform.translate(
-            offset: Offset(size.width * 2, 0),
-            child: Hero(
-              tag: 'transaction',
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: Image.asset(
-                  'assets/images/lago.jpg',
-                  width: size.width * .8,
-                  height: 80,
-                ),
-              ),
-            ),
-          ),
+         
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               InkWell(
                 onTap: () => Navigator.maybePop(context),
-                child: const Hero(tag: 'header', child: Header(isDark: true)),
+                child: const Hero(tag: 'bar', child: Header(isDark: true)),
               ),
               const Hero(
-                tag: 'tess',
+                tag: 'header',
                 child: Padding(
                   padding: EdgeInsets.only(top: 15, left: 15),
                   child: Material(
@@ -86,7 +72,7 @@ class AllListsPage extends StatelessWidget {
               Expanded(
                 child: TweenAnimationBuilder<double>(
                   duration: duration,
-                  tween: Tween(begin: 0, end: 1),
+                  tween: Tween(begin: 0, end: 3),
                   builder: (context, double value, _) {
                     if (value < 1.0) {
                       return const SizedBox.shrink();

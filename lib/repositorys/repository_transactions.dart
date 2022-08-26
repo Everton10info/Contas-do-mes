@@ -4,7 +4,7 @@ import '../services/data_source.dart';
 import '../models/transaction_model.dart';
 
 class RepositoryTransactions implements IRepositoryDb {
-  final _db = TransactionsDataBase();
+  final _db = ServiceDataBase();
   @override
   get db => _db;
 

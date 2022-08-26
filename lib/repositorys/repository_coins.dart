@@ -1,21 +1,28 @@
+import 'package:contas_do_mes/models/api_web.dart';
 import 'package:contas_do_mes/services/web_source.dart';
 import '../models/coins_model.dart';
 import 'repository_http_interface.dart';
 
 class RepositoryCoins implements IHttpClient {
-  List<String> coins = ['USD-BRL', 'EUR-BRL', 'BTC-BRL'];
-  String url = 'https://economia.awesomeapi.com.br/json/';
+  @override
+  ApiWeb api = ApiWeb();
+  
+  @override
+  ServiceWeb service = ServiceWeb();
+
   Coins? coinData;
 
-  final _services = Services();
   @override
-  Future<Coins?> getDataWeb(coin) async {
-    var response = await _services.getHttp(url + coin);
-    if(response!=null){
-    coinData = Coins.fromjson(response[0]);
-    return coinData;
-
+  Future<Coins?> getDataWeb(url) async {
+    var response = await service.getHttp(url);
+    if (response != null) {
+      coinData = Coins.fromjson(response[0]);
+      return coinData;
     }
     return null;
   }
+
+  
+
+  
 }

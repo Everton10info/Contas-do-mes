@@ -45,10 +45,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashPage(),
+        LoginView.pageName: (context) => const LoginView(),
         HomePageView.pageName: (context) => const HomePageView(),
         FormTransaction.pageName: (context) => const FormTransaction(),
         AllListsPage.pageName: (context) => const AllListsPage(),
-        LoginView.pageName :(context) => const LoginView(),
         // 'list-output':(context) => ListOutput();
         // 'list-input':(context)=> ListInput();
       },
