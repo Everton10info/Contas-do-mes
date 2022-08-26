@@ -1,6 +1,6 @@
 # Contas do mês
 
-Aplicação Flutter em construção que gerência contas mensais, entradas , saídas e pagamentos. Exibe gráfico dos últimos três meses, e faz converão de moedas. Uma verão 2.0.0 do meu antigo app, Despesas mensais, totalmente modificado.
+Aplicação Flutter em construção que gerência contas mensais, entradas , saídas e pagamentos. Exibe gráfico dos últimos três meses, e faz converão de moedas. Uma verão 2.0.0 do meu antigo app, Caixa pessoal, totalmente modificado.
 
 # Logo terá imagens ilustrativas
 
