@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "73955465889",
+    "project_id": "contas-do-mes-329d3",
+    "storage_bucket": "contas-do-mes-329d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73955465889:android:4635326c37e3fffe876ee0",
+        "android_client_info": {
+          "package_name": "br.com.contasdomes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73955465889-d4stekog3q40iu91ji4sb3mc10emlejb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgHA8FbiSM0TiQrvQo67mbDFW_tZbrkKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73955465889-d4stekog3q40iu91ji4sb3mc10emlejb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

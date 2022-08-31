@@ -9,6 +9,7 @@ import 'package:contas_do_mes/views/login-view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'view-models/view_model_coins.dart';
+import 'view-models/view_model_login.dart';
 import 'views/all_list_view.dart';
 import 'views/splash_page.dart';
 
@@ -23,7 +24,10 @@ void main() {
       ),
       ChangeNotifierProvider(
         create: (_) => ViewModelCoins(RepositoryCoins()),
-      )
+      ),
+      ChangeNotifierProvider(
+        create: (_) => ViewModelLogin(),
+      ),
     ],
     child: const MyApp(),
   ));
@@ -45,7 +49,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashPage(),
-        LoginView.pageName: (context) => const LoginView(),
+        LoginView.pageName: (context) =>  LoginView(),
         HomePageView.pageName: (context) => const HomePageView(),
         FormTransaction.pageName: (context) => const FormTransaction(),
         AllListsPage.pageName: (context) => const AllListsPage(),
