@@ -38,7 +38,7 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(
                   height: 80,
                   child: TextFormField(
-                    onSaved: (senha) => viewModelLogin.senha = (senha ?? ''),
+                    onSaved: (email) => viewModelLogin.email = (email ?? ''),
                     validator: ((value) => viewModelLogin.emailValid(value!)),
                     decoration: const InputDecoration(
                       contentPadding: EdgeInsets.fromLTRB(12, 12, 12, 12),

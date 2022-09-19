@@ -22,7 +22,7 @@ class Coins {
       name: map['name'],
       high: map['high'],
       low: map['low'],
-      createDate: map['create_date'],
+      createDate: map['createDate'],
     );
   }
 }

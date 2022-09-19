@@ -43,7 +43,7 @@ class ViewModelLogin extends ChangeNotifier {
     if (p.isEmpty) {
       return 'Campo não pode ser vázio!';
     }else
-    if (!p.contains('@') || p.length<5) {
+    if (!p.contains('@') || p.length<5 || !p.contains('.com')) {
       return 'Email inválido';
     }else{
 

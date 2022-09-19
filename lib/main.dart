@@ -2,7 +2,6 @@ import 'package:contas_do_mes/repositorys/repository_coins.dart';
 import 'package:contas_do_mes/repositorys/repository_transactions.dart';
 import 'package:contas_do_mes/view-models/view_model_form.dart';
 import 'package:contas_do_mes/view-models/view_model_transaction.dart';
-import 'package:contas_do_mes/views/all-list-view11.dart';
 import 'package:contas_do_mes/views/form_transaction.dart';
 import 'package:contas_do_mes/views/home_page_view.dart';
 import 'package:contas_do_mes/views/login-view.dart';
@@ -14,23 +13,25 @@ import 'views/all_list_view.dart';
 import 'views/splash_page.dart';
 
 void main() {
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(
-        create: (_) => ViewModeFormTransaction(RepositoryTransactions()),
-      ),
-      ChangeNotifierProvider(
-        create: (_) => ViewModelTransaction(RepositoryTransactions()),
-      ),
-      ChangeNotifierProvider(
-        create: (_) => ViewModelCoins(RepositoryCoins()),
-      ),
-      ChangeNotifierProvider(
-        create: (_) => ViewModelLogin(),
-      ),
-    ],
-    child: const MyApp(),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ViewModeFormTransaction(RepositoryTransactions()),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ViewModelTransaction(RepositoryTransactions()),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ViewModelCoins(RepositoryCoins()),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ViewModelLogin(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashPage(),
-        LoginView.pageName: (context) =>  LoginView(),
+        LoginView.pageName: (context) => LoginView(),
         HomePageView.pageName: (context) => const HomePageView(),
         FormTransaction.pageName: (context) => const FormTransaction(),
         AllListsPage.pageName: (context) => const AllListsPage(),
