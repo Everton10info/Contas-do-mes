@@ -4,6 +4,8 @@ import 'package:contas_do_mes/views/login-view.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import 'user_registration_view.dart';
+
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -18,7 +20,7 @@ class SplashPage extends StatelessWidget {
         duration: 1500,
         splash: Lottie.asset('assets/images/money.json'),
         splashTransition: SplashTransition.fadeTransition,
-        nextScreen: const LoginView(),
+        nextScreen: const RegisterView(),
         splashIconSize: 200.0,
       ),
     );

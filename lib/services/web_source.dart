@@ -11,4 +11,15 @@ class ServiceWeb {
       e.toString();
     }
   }
+
+  Future postHttp(String url, data) async {
+    try {
+      Response? response;
+      await Dio().post(url, data: data);
+
+      return response;
+    } catch (e) {
+      e.toString();
+    }
+  }
 }

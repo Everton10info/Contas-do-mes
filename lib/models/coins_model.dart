@@ -4,7 +4,7 @@ class Coins {
   String name;
   String high;
   String low;
-  String createDate;
+ 
 
   Coins({
     required this.code,
@@ -12,7 +12,7 @@ class Coins {
     required this.name,
     required this.high,
     required this.low,
-    required this.createDate,
+  
   });
 
    factory Coins.fromjson(Map<String, dynamic> map) {
@@ -22,7 +22,7 @@ class Coins {
       name: map['name'],
       high: map['high'],
       low: map['low'],
-      createDate: map['createDate'],
+  
     );
   }
 }
