@@ -1,12 +1,6 @@
 import 'dart:convert';
-
 import 'package:contas_do_mes/services/auth_exceptions.dart';
-import 'package:contas_do_mes/view-models/view_model_login.dart';
-import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-
+import 'package:flutter/foundation.dart';
 import 'web_source.dart';
 
 class FireBaseService {
@@ -15,36 +9,42 @@ class FireBaseService {
   static const String signInWithPassword = 'signInWithPassword?key=$apiKey';
   static const String _urlBase = 'https://identitytoolkit.googleapis.com/v1/accounts:';
 
-  var serviceWeb = ServiceWeb();
+  var serviceHttpWeb = ServiceHttpWeb();
 
-  Future<void> signup(String email, String password) async {
+  Future<bool> signup(String email, String password) async {
     String body = jsonEncode({
       "email": email,
       "password": password,
       "returnSecureToken": true,
     });
 
-    var response = await serviceWeb.postHttp(_urlBase + signUp, body);
+    var response = await serviceHttpWeb.postHttp(_urlBase + signUp, body);
 
-    debugPrint(
-        'errorrrrr + ${response['error']['message']}  '); 
-   // throw AuthException(response['error']['message']);
+    if (response == null) {
+      debugPrint('${AuthException('NOT_CONEXTION')}');
+      return false;
+    } else if (response['error'] != null) {
+      debugPrint('${AuthException(response['error']['message'].toString())}');
+      return false;
+    }
+    return true;
   }
 
-  Future<void> signIn(String email, String password) async {
- String body = jsonEncode({
+  Future<bool> signIn(String email, String password) async {
+    String body = jsonEncode({
       "email": email,
       "password": password,
       "returnSecureToken": true,
     });
 
-    var response = await serviceWeb.postHttp(_urlBase + signInWithPassword, body);
-   
-
-
-   debugPrint('${AuthException(response['error']['message'].toString())}');
-   
- }
-
-  
+    var response = await serviceHttpWeb.postHttp(_urlBase + signInWithPassword, body);
+    if (response == null) {
+      debugPrint('${AuthException('NOT_CONEXTION')}');
+      return false;
+    } else if (response['error'] != null) {
+      debugPrint('${AuthException(response['error']['message'].toString())}');
+      return false;
+    }
+    return true;
+  }
 }

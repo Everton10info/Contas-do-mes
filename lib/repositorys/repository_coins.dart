@@ -8,7 +8,7 @@ class RepositoryCoins implements IHttpClient {
   ApiWeb api = ApiWeb();
   
   @override
-  ServiceWeb service = ServiceWeb();
+  ServiceHttpWeb service = ServiceHttpWeb();
 
   Coins? coinData;
 

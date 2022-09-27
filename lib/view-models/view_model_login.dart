@@ -6,7 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import '../views/home_page_view.dart';
 
 class ViewModelLogin extends ChangeNotifier {
-  ViewModelLogin( this.serviceLogin);
+  ViewModelLogin(this.serviceLogin);
   FireBaseService serviceLogin = FireBaseService();
   String emailAndress = '';
   String password = '';
@@ -18,24 +18,26 @@ class ViewModelLogin extends ChangeNotifier {
 
   final formKey = GlobalKey<FormState>();
 
-
-  void submitFormRegister(BuildContext ctx){
+  void submitFormRegister(BuildContext ctx) {
     final isValid = formKey.currentState?.validate() ?? false;
     if (!isValid) {
       return;
     } else {
       formKey.currentState!.save();
-      serviceLogin
-          .signup(emailAndress, password)
-          .then((value) => Navigator.of(ctx).pushReplacement(
-                PageTransition(
-                  curve: Curves.decelerate,
-                  duration: const Duration(seconds: 2),
-                  type: PageTransitionType.scale,
-                  alignment: Alignment.center,
-                  child: const HomePageView(),
-                ),
-              ));
+
+      serviceLogin.signup(emailAndress, password).then((value) {
+        if (value) {
+          Navigator.of(ctx).pushReplacement(
+            PageTransition(
+              curve: Curves.decelerate,
+              duration: const Duration(seconds: 2),
+              type: PageTransitionType.scale,
+              alignment: Alignment.center,
+              child: const HomePageView(),
+            ),
+          );
+        }
+      });
     }
     notifyListeners();
   }
@@ -46,17 +48,19 @@ class ViewModelLogin extends ChangeNotifier {
       return;
     } else {
       formKey.currentState!.save();
-      serviceLogin
-          .signIn(emailAndress, password)
-          .then((value) => Navigator.of(ctx).pushReplacement(
-                PageTransition(
-                  curve: Curves.decelerate,
-                  duration: const Duration(seconds: 2),
-                  type: PageTransitionType.scale,
-                  alignment: Alignment.center,
-                  child: const HomePageView(),
-                ),
-              ));
+      serviceLogin.signIn(emailAndress, password).then((value) {
+        if (value) {
+          Navigator.of(ctx).pushReplacement(
+            PageTransition(
+              curve: Curves.decelerate,
+              duration: const Duration(seconds: 2),
+              type: PageTransitionType.scale,
+              alignment: Alignment.center,
+              child: const HomePageView(),
+            ),
+          );
+        }
+      });
     }
     notifyListeners();
   }
@@ -68,7 +72,8 @@ class ViewModelLogin extends ChangeNotifier {
       return 'Senha precisar ter no mínimo 8 caracteres';
     } /* else if (password != passwordConfirm) {
       return 'Senhas são diferentes';
-    }  */else {
+    }  */
+    else {
       return null;
     }
   }
