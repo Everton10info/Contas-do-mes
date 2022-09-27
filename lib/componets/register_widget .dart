@@ -16,7 +16,7 @@ class RegisterWidget extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Consumer(
-          builder: (BuildContext context, value, Widget? child) {
+          builder: ( context, value, Widget? child) {
             return SizedBox(
               child: SingleChildScrollView(
                 child: Form(
@@ -34,7 +34,7 @@ class RegisterWidget extends StatelessWidget {
                       SizedBox(
                         height: 80,
                         child: TextFormField(
-                          onSaved: (email) => viewModelLogin.emailAndress = email!,
+                          onSaved: (email) => viewModelLogin.emailAndress.text = email!,
                           validator: ((value) => viewModelLogin.emailValid(value!)),
                           decoration: const InputDecoration(
                             contentPadding: EdgeInsets.fromLTRB(12, 12, 12, 12),
@@ -53,8 +53,8 @@ class RegisterWidget extends StatelessWidget {
                       SizedBox(
                         height: 80,
                         child: TextFormField(
-                          onSaved: (password) => viewModelLogin.password = password!,
-                          validator: (value) => viewModelLogin.passwordValid(value!) ,
+                          onSaved: (password) => viewModelLogin.password.text = password!,
+                          validator: ((value) => viewModelLogin.passwordValid(value!)) ,
                           obscureText: viewModelLogin.passwordTextObscure,
                           
                           decoration:  InputDecoration(
@@ -76,8 +76,8 @@ class RegisterWidget extends StatelessWidget {
                        SizedBox(
                         height: 80,
                         child: TextFormField(
-                          onSaved: (passwordConfirm) => viewModelLogin.passwordConfirm = passwordConfirm!,
-                          validator: (value) => viewModelLogin.passwordValid(value!) ,
+                          onSaved: (passwordConfirm) => viewModelLogin.passwordConfirm.text = passwordConfirm!,
+                          validator: (value) => viewModelLogin.passwordValidConfirm(value!) ,
                           obscureText: viewModelLogin.confirmPasswordTextObscure,
                           
                           decoration:  InputDecoration(

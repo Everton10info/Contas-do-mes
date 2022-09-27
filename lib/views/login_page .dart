@@ -5,19 +5,19 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
   static String pageName = "/loginView";
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<LoginPage> createState() => _LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginViewState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     var viewModelLogin = Provider.of<ViewModelLogin>(context);
-    return viewModelLogin.isRegister(viewModelLogin.registered)
+    return viewModelLogin.registered
         ? RegisterWidget(
             viewModelLogin: viewModelLogin,
           )

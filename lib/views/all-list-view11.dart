@@ -1,6 +1,6 @@
 
 import 'package:contas_do_mes/view-models/view_model_transaction.dart';
-import 'package:contas_do_mes/views/form_transaction.dart';
+import 'package:contas_do_mes/views/form_transaction_page.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -42,7 +42,7 @@ class _AllListsPage11State extends State<AllListsPage11> {
                          viewModelTransaction.deleteTransaction(viewModelTransaction.allList[index].id!)),
                      onDoubleTap: () {
                        viewModelForm.getTransaction(viewModelTransaction.allList[index]);
-                       Navigator.of(context).pushNamed(FormTransaction.pageName);
+                       Navigator.of(context).pushNamed(FormTransactionPage.pageName);
                   },
                       child: Card(
                         child: SizedBox(
@@ -80,7 +80,7 @@ class _AllListsPage11State extends State<AllListsPage11> {
                   duration: const Duration(seconds: 2),
                   type: PageTransitionType.scale,
                   alignment: Alignment.center,
-                  child: const FormTransaction(),
+                  child: const FormTransactionPage(),
                 ));
               
               },

@@ -3,14 +3,14 @@ import 'package:contas_do_mes/repositorys/repository_transactions.dart';
 import 'package:contas_do_mes/services/fire_base_service.dart';
 import 'package:contas_do_mes/view-models/view_model_form.dart';
 import 'package:contas_do_mes/view-models/view_model_transaction.dart';
-import 'package:contas_do_mes/views/form_transaction.dart';
-import 'package:contas_do_mes/views/home_page_view.dart';
+import 'package:contas_do_mes/views/form_transaction_page.dart';
+import 'package:contas_do_mes/views/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'view-models/view_model_coins.dart';
 import 'view-models/view_model_login.dart';
-import 'views/all_list_view.dart';
-import 'views/login_view .dart';
+import 'views/all_list_page.dart';
+import 'views/login_page .dart';
 import 'views/splash_page.dart';
 
 void main() {
@@ -51,9 +51,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashPage(),
-        LoginView.pageName: (context) => const LoginView(),
-        HomePageView.pageName: (context) => const HomePageView(),
-        FormTransaction.pageName: (context) => const FormTransaction(),
+        LoginPage.pageName: (context) => const LoginPage(),
+        HomePage.pageName: (context) => const HomePage(),
+        FormTransactionPage.pageName: (context) => const FormTransactionPage(),
         AllListsPage.pageName: (context) => const AllListsPage(),
         // 'list-output':(context) => ListOutput();
         // 'list-input':(context)=> ListInput();

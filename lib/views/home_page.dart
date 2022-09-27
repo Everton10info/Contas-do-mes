@@ -5,16 +5,16 @@ import 'package:contas_do_mes/view-models/view_model_coins.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'all_list_view.dart';
+import 'all_list_page.dart';
 
-class HomePageView extends StatefulWidget {
-  const HomePageView({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
   static String pageName = '/homePageView';
   @override
-  State<HomePageView> createState() => _HomePageViewState();
+  State<HomePage> createState() => _HomePageViewState();
 }
 
-class _HomePageViewState extends State<HomePageView> {
+class _HomePageViewState extends State<HomePage> {
   final controller = PageController(initialPage: 1);
 
   @override

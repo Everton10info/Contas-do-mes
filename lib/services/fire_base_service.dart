@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:contas_do_mes/services/auth_exceptions.dart';
+import 'package:contas_do_mes/helpers/auth_exceptions.dart';
 import 'package:flutter/foundation.dart';
 import 'web_source.dart';
 
@@ -8,41 +8,35 @@ class FireBaseService {
   static const String signUp = 'signUp?key=$apiKey';
   static const String signInWithPassword = 'signInWithPassword?key=$apiKey';
   static const String _urlBase = 'https://identitytoolkit.googleapis.com/v1/accounts:';
+  String error = '';
 
   var serviceHttpWeb = ServiceHttpWeb();
 
-  Future<bool> signup(String email, String password) async {
-    String body = jsonEncode({
-      "email": email,
-      "password": password,
-      "returnSecureToken": true,
-    });
-
-    var response = await serviceHttpWeb.postHttp(_urlBase + signUp, body);
-
-    if (response == null) {
-      debugPrint('${AuthException('NOT_CONEXTION')}');
-      return false;
-    } else if (response['error'] != null) {
-      debugPrint('${AuthException(response['error']['message'].toString())}');
-      return false;
+  Future<bool> authenticate(String email, String password, String authType) async {
+    if (authType == 'login') {
+      authType = signInWithPassword;
+    } else if (authType == 'register') {
+      authType = signUp;
     }
-    return true;
-  }
 
-  Future<bool> signIn(String email, String password) async {
+    error = '';
     String body = jsonEncode({
       "email": email,
       "password": password,
       "returnSecureToken": true,
     });
 
-    var response = await serviceHttpWeb.postHttp(_urlBase + signInWithPassword, body);
+    var response = await serviceHttpWeb.postHttp(_urlBase + authType, body);
+
     if (response == null) {
       debugPrint('${AuthException('NOT_CONEXTION')}');
+      error = '${AuthException('NOT_CONEXTION')}';
+
       return false;
     } else if (response['error'] != null) {
-      debugPrint('${AuthException(response['error']['message'].toString())}');
+      debugPrint(response['error']['message'].toString());
+      error = '${AuthException(response['error']['message'])}';
+
       return false;
     }
     return true;

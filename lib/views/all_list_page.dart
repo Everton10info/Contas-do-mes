@@ -2,10 +2,10 @@ import 'package:provider/provider.dart';
 import '../componets/header.dart';
 import '../componets/transaction_card.dart';
 import '../view-models/view_model_transaction.dart';
-import '../constants.dart';
+import '../helpers/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:contas_do_mes/views/form_transaction.dart';
+import 'package:contas_do_mes/views/form_transaction_page.dart';
 
 class AllListsPage extends StatelessWidget {
   const AllListsPage({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class AllListsPage extends StatelessWidget {
             duration: const Duration(seconds: 2),
             type: PageTransitionType.scale,
             alignment: Alignment.center,
-            child: const FormTransaction(),
+            child: const FormTransactionPage(),
           ),
         );
       }),

@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../view-models/view_model_form.dart';
 
-class FormTransaction extends StatefulWidget {
-  const FormTransaction({Key? key}) : super(key: key);
-  static String pageName = 'FormTransaction';
+class FormTransactionPage extends StatefulWidget {
+  const FormTransactionPage({Key? key}) : super(key: key);
+  static String pageName = 'FormTransactionPage';
 
   @override
-  State<FormTransaction> createState() => _FormTransactionState();
+  State<FormTransactionPage> createState() => _FormTransactionState();
 }
 
-class _FormTransactionState extends State<FormTransaction> {
+class _FormTransactionState extends State<FormTransactionPage> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
