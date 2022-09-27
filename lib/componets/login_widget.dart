@@ -1,24 +1,18 @@
-import 'package:contas_do_mes/view-models/view_model_login.dart';
+import 'package:contas_do_mes/componets/register_widget%20.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
 import 'package:provider/provider.dart';
+import '../view-models/view_model_login.dart';
 
-class RegisterView extends StatefulWidget {
-  const RegisterView({Key? key}) : super(key: key);
-  static String pageName = "/registerView";
+class LoginWidget extends StatelessWidget {
+  const LoginWidget({Key? key, required this.viewModelLogin}) : super(key: key);
+  final ViewModelLogin viewModelLogin;
 
-  @override
-  State<RegisterView> createState() => _RegisterView();
-}
-
-class _RegisterView extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
-    var viewModelLogin = Provider.of<ViewModelLogin>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Retgistration'),
+        title: const Text('Login'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -71,7 +65,7 @@ class _RegisterView extends State<RegisterView> {
                                 color: Color.fromARGB(255, 243, 248, 248),
                               ),
                             ),
-                            labelText: 'password',
+                            labelText: 'senha',
                             suffixIcon:  InkWell(child:  Icon(viewModelLogin.passwordTextObscure? Icons.visibility_off :Icons.visibility ), onTap:
                           () =>   viewModelLogin.passwordVisible(),),
                           ),
@@ -80,32 +74,19 @@ class _RegisterView extends State<RegisterView> {
                       const SizedBox(
                         height: 5,
                       ),
-                       SizedBox(
-                        height: 80,
-                        child: TextFormField(
-                          onSaved: (passwordConfirm) => viewModelLogin.passwordConfirm = passwordConfirm!,
-                          validator: (value) => viewModelLogin.passwordValid(value!) ,
-                          obscureText: viewModelLogin.confirmPasswordTextObscure,
-                          
-                          decoration:  InputDecoration(
-                            contentPadding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 243, 248, 248),
-                              ),
-                            ),
-                            labelText: 'password',
-                            suffixIcon:  InkWell(child:  Icon(viewModelLogin.confirmPasswordTextObscure? Icons.visibility_off :Icons.visibility ), onTap:
-                          () =>   viewModelLogin.passwordTConfirmVisible(),),
-                          ),
-                        ),
-                      ),
+                     
                       const SizedBox(
                         height: 5,
                       ),
+
+                      TextButton(onPressed: (){
+                       
+                        viewModelLogin.registerNow();
+                      }, child: const Text('Fazer Cadastro'), ),
+                      const SizedBox(height: 5,),
                       ElevatedButton.icon(
                         onPressed: () {
-                          viewModelLogin.submitForm(context);
+                          viewModelLogin.submitFormSingIn(context);
                         },
                         icon: const Icon(Icons.login),
                         label: const Text('Login'),

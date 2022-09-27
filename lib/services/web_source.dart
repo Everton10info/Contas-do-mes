@@ -1,23 +1,23 @@
-import 'package:dio/dio.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class ServiceWeb {
   Future getHttp(String url) async {
     try {
-      Response? response;
-      response = await Dio().get(url);
+      var response = await http.get(Uri.parse(url));
+      var data = jsonDecode(response.body);
 
-      return response.data;
+      return data;
     } catch (e) {
       e.toString();
     }
   }
 
-  Future postHttp(String url, data) async {
+  Future postHttp(String url, body) async {
     try {
-      Response? response;
-      await Dio().post(url, data: data);
-
-      return response;
+      var response = await http.post(Uri.parse(url), body: body);
+      var data = jsonDecode(response.body);
+      return data;
     } catch (e) {
       e.toString();
     }

@@ -1,16 +1,16 @@
 import 'package:contas_do_mes/repositorys/repository_coins.dart';
 import 'package:contas_do_mes/repositorys/repository_transactions.dart';
+import 'package:contas_do_mes/services/fire_base_service.dart';
 import 'package:contas_do_mes/view-models/view_model_form.dart';
 import 'package:contas_do_mes/view-models/view_model_transaction.dart';
 import 'package:contas_do_mes/views/form_transaction.dart';
 import 'package:contas_do_mes/views/home_page_view.dart';
-import 'package:contas_do_mes/views/login-view.dart';
-import 'package:contas_do_mes/views/user_registration_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'view-models/view_model_coins.dart';
 import 'view-models/view_model_login.dart';
 import 'views/all_list_view.dart';
+import 'views/login_view .dart';
 import 'views/splash_page.dart';
 
 void main() {
@@ -27,7 +27,7 @@ void main() {
           create: (_) => ViewModelCoins(RepositoryCoins()),
         ),
         ChangeNotifierProvider(
-          create: (_) => ViewModelLogin(),
+          create: (_) => ViewModelLogin(FireBaseService()),
         ),
       ],
       child: const MyApp(),
@@ -51,7 +51,6 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashPage(),
-        RegisterView.pageName:(context) => const RegisterView(),
         LoginView.pageName: (context) => const LoginView(),
         HomePageView.pageName: (context) => const HomePageView(),
         FormTransaction.pageName: (context) => const FormTransaction(),

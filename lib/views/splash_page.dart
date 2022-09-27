@@ -1,10 +1,11 @@
-
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:contas_do_mes/views/login-view.dart';
+
+import 'package:contas_do_mes/view-models/view_model_login.dart';
+import 'package:contas_do_mes/views/home_page_view.dart';
+import 'package:contas_do_mes/views/login_view%20.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
-import 'user_registration_view.dart';
+import 'package:provider/provider.dart';
 
 
 class SplashPage extends StatelessWidget {
@@ -12,6 +13,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var viewModel = Provider.of<ViewModelLogin>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Contas do Mês'),
@@ -20,7 +22,7 @@ class SplashPage extends StatelessWidget {
         duration: 1500,
         splash: Lottie.asset('assets/images/money.json'),
         splashTransition: SplashTransition.fadeTransition,
-        nextScreen: const RegisterView(),
+        nextScreen: viewModel.isLogged(viewModel.logged) ? const HomePageView() : const LoginView(),
         splashIconSize: 200.0,
       ),
     );
