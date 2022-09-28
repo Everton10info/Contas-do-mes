@@ -13,7 +13,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var viewModel = Provider.of<ViewModelLogin>(context);
+   // var viewModel = Provider.of<ViewModelLogin>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Contas do Mês'),
@@ -22,7 +22,7 @@ class SplashPage extends StatelessWidget {
         duration: 1500,
         splash: Lottie.asset('assets/images/money.json'),
         splashTransition: SplashTransition.fadeTransition,
-        nextScreen: viewModel.isLogged(viewModel.logged) ? const HomePage() : const LoginPage(),
+        nextScreen: /* viewModel.isLogged(viewModel.logged) ? const HomePage() : */ const LoginPage(),
         splashIconSize: 200.0,
       ),
     );

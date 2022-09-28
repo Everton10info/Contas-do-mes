@@ -1,5 +1,3 @@
-
-
 import 'package:contas_do_mes/componets/chart_custom.dart';
 import 'package:contas_do_mes/view-models/view_model_coins.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +56,9 @@ class _HomePageViewState extends State<HomePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                SizedBox(
+                  height: height * 0.005,
+                ),
                 const Text(
                   'Conversão de moedas',
                   style: TextStyle(
@@ -65,26 +66,29 @@ class _HomePageViewState extends State<HomePage> {
                     fontSize: 16,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    keyboardType:
-                        const TextInputType.numberWithOptions(decimal: true, signed: true),
-                    controller: Data.value,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 243, 248, 248),
+                SizedBox(
+                  height: height* 0.085,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true, signed: true),
+                      controller: Data.value,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(255, 243, 248, 248),
+                          ),
                         ),
+                       
+                        labelText: 'Valor para converter',
+                        prefixIcon: Icon(
+                          Icons.price_change,
+                          color: Colors.blueAccent,
+                        ),
+                        suffixText: 'R\$',
+                        suffixStyle: TextStyle(color: Colors.blueAccent, fontSize: 18),
                       ),
-                     // hintText: '00.00',
-                      labelText: 'Valor para converter',
-                      prefixIcon: Icon(
-                        Icons.price_change,
-                        color: Colors.blueAccent,
-                      ),
-                      suffixText: 'R\$',
-                      suffixStyle: TextStyle(color: Colors.blueAccent, fontSize: 18),
                     ),
                   ),
                 ),
@@ -119,7 +123,6 @@ class _HomePageViewState extends State<HomePage> {
                       child: InkWell(
                         onTap: () {
                           Data.getCoins(1);
-                         
                         },
                         child: const Card(
                             elevation: 10,
@@ -140,7 +143,6 @@ class _HomePageViewState extends State<HomePage> {
                       child: InkWell(
                         onTap: () {
                           Data.getCoins(2);
-                          
                         },
                         child: const Card(
                             elevation: 10,
@@ -160,26 +162,22 @@ class _HomePageViewState extends State<HomePage> {
                 SizedBox(
                   height: height * .015,
                 ),
-
-                Consumer<ViewModelCoins>(
-                  builder: (context, Data, child) {
-                    return SizedBox(
-                  child: Data.loader
-                      ? const CircularProgressIndicator()
-                      : Column(
-                          children: [
-                            Text(Data.resultLabel,
-                                style: const TextStyle(
-                                    color: Colors.black87, fontWeight: FontWeight.w500)),
-                            Text(Data.resultValue,
-                                style: const TextStyle(
-                                    color: Colors.blueAccent, fontWeight: FontWeight.w700)),
-                          ],
-                        ),
-                );
-                  }),
-                
-                
+                Consumer<ViewModelCoins>(builder: (context, Data, child) {
+                  return SizedBox(
+                    child: Data.loader
+                        ? const CircularProgressIndicator()
+                        : Column(
+                            children: [
+                              Text(Data.resultLabel,
+                                  style: const TextStyle(
+                                      color: Colors.black87, fontWeight: FontWeight.w500)),
+                              Text(Data.resultValue,
+                                  style: const TextStyle(
+                                      color: Colors.blueAccent, fontWeight: FontWeight.w700)),
+                            ],
+                          ),
+                  );
+                }),
                 SizedBox(
                   height: height * .02,
                 ),

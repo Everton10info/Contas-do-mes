@@ -4,10 +4,16 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../view-models/view_model_login.dart';
 
-class LoginWidget extends StatelessWidget {
-  const LoginWidget({Key? key, required this.viewModelLogin}) : super(key: key);
-  final ViewModelLogin viewModelLogin;
+class LoginWidget extends StatefulWidget {
+  const LoginWidget({
+    Key? key,
+  }) : super(key: key);
 
+  @override
+  State<LoginWidget> createState() => _LoginWidgetState();
+}
+
+class _LoginWidgetState extends State<LoginWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,14 +22,14 @@ class LoginWidget extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Consumer(
-          builder: (context, value, Widget? child) {
+        child: Consumer<ViewModelLogin>(
+          builder: (context, viewModelLogin, child) {
             return SizedBox(
               child: SingleChildScrollView(
                 child: Form(
                   key: viewModelLogin.formKey,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    
                     children: [
                       const SizedBox(
                         height: 5,
@@ -35,8 +41,9 @@ class LoginWidget extends StatelessWidget {
                       SizedBox(
                         height: 80,
                         child: TextFormField(
-                          onSaved: (email) => viewModelLogin.emailAndress.text = email!,
+                          onSaved: (value) => viewModelLogin.emailAndress.text = value!,
                           validator: ((value) => viewModelLogin.emailValid(value!)),
+                          controller: viewModelLogin.emailAndress,
                           decoration: const InputDecoration(
                             contentPadding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                             border: OutlineInputBorder(
@@ -54,7 +61,8 @@ class LoginWidget extends StatelessWidget {
                       SizedBox(
                         height: 80,
                         child: TextFormField(
-                          onSaved: (password) => viewModelLogin.password.text = password!,
+                          onSaved: (value) => viewModelLogin.password.text = value!,
+                          controller: viewModelLogin.password,
                           validator: (value) => viewModelLogin.passwordValid(value!),
                           obscureText: viewModelLogin.passwordTextObscure,
                           decoration: InputDecoration(
@@ -77,25 +85,27 @@ class LoginWidget extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
                       TextButton(
                         onPressed: () {
-                          viewModelLogin.registerNow();
+                          viewModelLogin.registerOrLogin();
                         },
-                        child: const Text('Fazer Cadastro'),
+                        child: const Text('Ir para cadastro ?'),
                       ),
                       const SizedBox(
                         height: 5,
                       ),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          viewModelLogin.submitFormSingIn(context);
-                        },
-                        icon: const Icon(Icons.login),
-                        label: const Text('Login'),
-                      )
+                      viewModelLogin.loader
+                          ? const CircularProgressIndicator()
+                          : SizedBox(width: 600,
+                            child: ElevatedButton.icon(
+                                onPressed: () {
+                                 
+                                  viewModelLogin.submitForm(context, 'login');
+                                },
+                                icon: const Icon(Icons.login),
+                                label: const Text('Login'),
+                              ),
+                          )
                     ],
                   ),
                 ),

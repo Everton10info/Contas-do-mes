@@ -18,11 +18,11 @@ class _LoginViewState extends State<LoginPage> {
   Widget build(BuildContext context) {
     var viewModelLogin = Provider.of<ViewModelLogin>(context);
     return viewModelLogin.registered
-        ? RegisterWidget(
-            viewModelLogin: viewModelLogin,
+        ? const RegisterWidget(
+           
           )
-        : LoginWidget(
-            viewModelLogin: viewModelLogin,
+        : const LoginWidget(
+            
           );
   }
 }

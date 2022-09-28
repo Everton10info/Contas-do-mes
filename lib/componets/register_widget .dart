@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
-class RegisterWidget extends StatelessWidget {
-  const RegisterWidget({Key? key, required this.viewModelLogin}) : super(key: key);
-  final  ViewModelLogin viewModelLogin;
+class RegisterWidget extends StatefulWidget {
+  const RegisterWidget({
+    Key? key,
+  }) : super(key: key);
 
+  @override
+  State<RegisterWidget> createState() => _RegisterWidgetState();
+}
+
+class _RegisterWidgetState extends State<RegisterWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,14 +21,13 @@ class RegisterWidget extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Consumer(
-          builder: ( context, value, Widget? child) {
+        child: Consumer<ViewModelLogin>(
+          builder: (context, viewModelLogin, child) {
             return SizedBox(
               child: SingleChildScrollView(
                 child: Form(
                   key: viewModelLogin.formKey,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const SizedBox(
                         height: 5,
@@ -35,6 +40,7 @@ class RegisterWidget extends StatelessWidget {
                         height: 80,
                         child: TextFormField(
                           onSaved: (email) => viewModelLogin.emailAndress.text = email!,
+                          controller: viewModelLogin.emailAndress,
                           validator: ((value) => viewModelLogin.emailValid(value!)),
                           decoration: const InputDecoration(
                             contentPadding: EdgeInsets.fromLTRB(12, 12, 12, 12),
@@ -53,11 +59,11 @@ class RegisterWidget extends StatelessWidget {
                       SizedBox(
                         height: 80,
                         child: TextFormField(
+                          controller: viewModelLogin.password,
                           onSaved: (password) => viewModelLogin.password.text = password!,
-                          validator: ((value) => viewModelLogin.passwordValid(value!)) ,
+                          validator: ((value) => viewModelLogin.passwordValid(value!)),
                           obscureText: viewModelLogin.passwordTextObscure,
-                          
-                          decoration:  InputDecoration(
+                          decoration: InputDecoration(
                             contentPadding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
                             border: const OutlineInputBorder(
                               borderSide: BorderSide(
@@ -65,22 +71,28 @@ class RegisterWidget extends StatelessWidget {
                               ),
                             ),
                             labelText: 'senha',
-                            suffixIcon:  InkWell(child:  Icon(viewModelLogin.passwordTextObscure? Icons.visibility_off :Icons.visibility ), onTap:
-                          () =>   viewModelLogin.passwordVisible(),),
+                            suffixIcon: InkWell(
+                              child: Icon(viewModelLogin.passwordTextObscure
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                              onTap: () => viewModelLogin.passwordVisible(),
+                            ),
                           ),
                         ),
                       ),
                       const SizedBox(
                         height: 5,
                       ),
-                       SizedBox(
+                      SizedBox(
                         height: 80,
                         child: TextFormField(
-                          onSaved: (passwordConfirm) => viewModelLogin.passwordConfirm.text = passwordConfirm!,
-                          validator: (value) => viewModelLogin.passwordValidConfirm(value!) ,
+                          controller: viewModelLogin.passwordConfirm,
+                          onSaved: (passwordConfirm) =>
+                              viewModelLogin.passwordConfirm.text = passwordConfirm!,
+                          validator: (value) => viewModelLogin.passwordValidConfirm(
+                              value!, viewModelLogin.password.text),
                           obscureText: viewModelLogin.confirmPasswordTextObscure,
-                          
-                          decoration:  InputDecoration(
+                          decoration: InputDecoration(
                             contentPadding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
                             border: const OutlineInputBorder(
                               borderSide: BorderSide(
@@ -88,21 +100,36 @@ class RegisterWidget extends StatelessWidget {
                               ),
                             ),
                             labelText: 'senha',
-                            suffixIcon:  InkWell(child:  Icon(viewModelLogin.confirmPasswordTextObscure? Icons.visibility_off :Icons.visibility ), onTap:
-                          () =>   viewModelLogin.passwordTConfirmVisible(),),
+                            suffixIcon: InkWell(
+                              child: Icon(viewModelLogin.confirmPasswordTextObscure
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                              onTap: () => viewModelLogin.passwordTConfirmVisible(),
+                            ),
                           ),
                         ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          viewModelLogin.registerOrLogin();
+                        },
+                        child: const Text('Ir para Login ? '),
                       ),
                       const SizedBox(
                         height: 5,
                       ),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          viewModelLogin.submitFormRegister(context);
-                        },
-                        icon: const Icon(Icons.login),
-                        label: const Text('Cadastrar'),
-                      )
+                      viewModelLogin.loader
+                          ? const CircularProgressIndicator()
+                          : SizedBox(
+                              width: 600,
+                              child: ElevatedButton.icon(
+                                onPressed: () {
+                                  viewModelLogin.submitForm(context, 'register');
+                                },
+                                icon: const Icon(Icons.login),
+                                label: const Text('Cadastrar'),
+                              ),
+                            )
                     ],
                   ),
                 ),

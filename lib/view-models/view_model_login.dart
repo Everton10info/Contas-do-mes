@@ -1,7 +1,6 @@
 import 'package:contas_do_mes/services/fire_base_service.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-
 import '../views/home_page.dart';
 
 class ViewModelLogin extends ChangeNotifier {
@@ -14,58 +13,18 @@ class ViewModelLogin extends ChangeNotifier {
   bool confirmPasswordTextObscure = true;
   bool logged = false;
   bool registered = false;
+  bool loader = false;
 
   final formKey = GlobalKey<FormState>();
 
-  void submitFormRegister(BuildContext ctx) {
+  void submitForm(BuildContext ctx, String authType) {
+ loader=true;
     final isValid = formKey.currentState?.validate() ?? false;
     if (!isValid) {
       return;
     } else {
       formKey.currentState!.save();
-
-      serviceLogin.authenticate(emailAndress.text, password.text,'register').then((value) {
-        if (value) {
-          Navigator.of(ctx).pushReplacement(
-            PageTransition(
-              curve: Curves.decelerate,
-              duration: const Duration(seconds: 2),
-              type: PageTransitionType.scale,
-              alignment: Alignment.center,
-              child: const HomePage(),
-            ),
-          );
-        } else {
-          
-          showDialog(
-              context: ctx,
-              builder: (ctx) {
-                return AlertDialog(
-                  title: const Text('Erro!'),
-                  content: Text(serviceLogin.error),
-                  backgroundColor: Colors.amber[50],
-                  actions: [
-                    IconButton(
-                        onPressed: () {
-                          Navigator.pop(ctx, true);
-                        },
-                        icon: const Icon(Icons.close))
-                  ],
-                );
-              });
-        }
-      });
-    }
-    notifyListeners();
-  }
-
-  void submitFormSingIn(BuildContext ctx) {
-    final isValid = formKey.currentState?.validate() ?? false;
-    if (!isValid) {
-      return;
-    } else {
-      formKey.currentState!.save();
-      serviceLogin.authenticate(emailAndress.text, password.text, 'login').then((value) {
+      serviceLogin.authenticate(emailAndress.text, password.text, authType).then((value) {
         if (value) {
           Navigator.of(ctx).pushReplacement(
             PageTransition(
@@ -82,12 +41,16 @@ class ViewModelLogin extends ChangeNotifier {
               builder: (ctx) {
                 return AlertDialog(
                   elevation: 30,
-                  title: const Text('OPS!',style: TextStyle(fontSize: 25)),
-                  content: Text(serviceLogin.error, style: const TextStyle(fontSize: 20),textAlign: TextAlign.justify, ),
+                  title: const Text('OPS!', style: TextStyle(fontSize: 25)),
+                  content: Text(
+                    serviceLogin.error,
+                    style: const TextStyle(fontSize: 20),
+                    textAlign: TextAlign.center,
+                  ),
                   backgroundColor: Colors.amber[50],
                   actions: [
                     IconButton(
-                      color: Colors.redAccent,
+                        color: Colors.redAccent,
                         onPressed: () {
                           Navigator.pop(ctx, true);
                         },
@@ -98,6 +61,7 @@ class ViewModelLogin extends ChangeNotifier {
         }
       });
     }
+    loader = false;
     notifyListeners();
   }
 
@@ -111,14 +75,12 @@ class ViewModelLogin extends ChangeNotifier {
     }
   }
 
-  passwordValidConfirm(String p) {
-     debugPrint('aaaaaaaaa'+password.text+'======='+passwordConfirm.text);
-    if (p.isEmpty) {
+  passwordValidConfirm(String p1, String p2) {
+    if (p1.isEmpty) {
       return 'Campo não pode ser vázio!';
-    } else if (p.length < 8) {
+    } else if (p1.length < 8) {
       return 'Senha precisar ter no mínimo 8 caracteres';
-    } else if (password.text != passwordConfirm.text) {
-      debugPrint('aaaaaaaaa'+password.text+'======='+passwordConfirm.text);
+    } else if (p1 != password.text) {
       return 'Senhas são diferentes';
     } else {
       return null;
@@ -153,7 +115,7 @@ class ViewModelLogin extends ChangeNotifier {
     }
   }
 
-  registerNow() {
+  registerOrLogin() {
     registered = !registered;
 
     notifyListeners();

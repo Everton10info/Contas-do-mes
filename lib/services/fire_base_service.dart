@@ -29,7 +29,7 @@ class FireBaseService {
     var response = await serviceHttpWeb.postHttp(_urlBase + authType, body);
 
     if (response == null) {
-      debugPrint('${AuthException('NOT_CONEXTION')}');
+      debugPrint('/* ${AuthException('NOT_CONEXTION')} */ $response');
       error = '${AuthException('NOT_CONEXTION')}';
 
       return false;
