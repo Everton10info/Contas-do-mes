@@ -6,7 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../repositorys/repository_coins.dart';
-import '../view-models/view_model_form.dart';
+import '../view-models/view_model_form_transaction.dart';
 
 class AllListsPage11 extends StatefulWidget {
   const AllListsPage11({Key? key}) : super(key: key);

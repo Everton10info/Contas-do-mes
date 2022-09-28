@@ -12,19 +12,24 @@ class ViewModelLogin extends ChangeNotifier {
   bool passwordTextObscure = true;
   bool confirmPasswordTextObscure = true;
   bool logged = false;
-  bool registered = false;
+  bool registerNow = false;
   bool loader = false;
+
+ 
 
   final formKey = GlobalKey<FormState>();
 
   void submitForm(BuildContext ctx, String authType) {
- loader=true;
+    circularProgressIndicator();
     final isValid = formKey.currentState?.validate() ?? false;
     if (!isValid) {
+      circularProgressIndicator();
       return;
     } else {
       formKey.currentState!.save();
       serviceLogin.authenticate(emailAndress.text, password.text, authType).then((value) {
+        circularProgressIndicator();
+
         if (value) {
           Navigator.of(ctx).pushReplacement(
             PageTransition(
@@ -36,21 +41,32 @@ class ViewModelLogin extends ChangeNotifier {
             ),
           );
         } else {
+          circularProgressIndicator();
           showDialog(
               context: ctx,
               builder: (ctx) {
                 return AlertDialog(
                   elevation: 30,
-                  title: const Text('OPS!', style: TextStyle(fontSize: 25)),
+                  title: Row(
+                    children: const [
+                      Icon(
+                        Icons.report_problem_outlined,
+                        color: Colors.amber,
+                      ),
+                      Text(' Ops! ', style: TextStyle(fontSize: 20, color: Colors.red)),
+                    ],
+                  ),
                   content: Text(
                     serviceLogin.error,
-                    style: const TextStyle(fontSize: 20),
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   backgroundColor: Colors.amber[50],
                   actions: [
                     IconButton(
-                        color: Colors.redAccent,
+                        color: const Color.fromARGB(255, 161, 32, 32),
                         onPressed: () {
                           Navigator.pop(ctx, true);
                         },
@@ -58,10 +74,14 @@ class ViewModelLogin extends ChangeNotifier {
                   ],
                 );
               });
+          circularProgressIndicator();
         }
       });
     }
-    loader = false;
+  }
+
+  circularProgressIndicator() {
+    loader = !loader;
     notifyListeners();
   }
 
@@ -97,7 +117,7 @@ class ViewModelLogin extends ChangeNotifier {
     }
   }
 
-  void passwordTConfirmVisible() {
+  void passwordConfirmVisible() {
     confirmPasswordTextObscure = !confirmPasswordTextObscure;
     notifyListeners();
   }
@@ -116,8 +136,7 @@ class ViewModelLogin extends ChangeNotifier {
   }
 
   registerOrLogin() {
-    registered = !registered;
-
+    registerNow = !registerNow;
     notifyListeners();
   }
 }

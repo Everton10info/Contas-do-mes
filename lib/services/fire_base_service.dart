@@ -4,11 +4,23 @@ import 'package:flutter/foundation.dart';
 import 'web_source.dart';
 
 class FireBaseService {
+  
+
   static const String apiKey = 'AIzaSyDgHA8FbiSM0TiQrvQo67mbDFW_tZbrkKE';
   static const String signUp = 'signUp?key=$apiKey';
   static const String signInWithPassword = 'signInWithPassword?key=$apiKey';
   static const String _urlBase = 'https://identitytoolkit.googleapis.com/v1/accounts:';
   String error = '';
+
+  String? _email;
+  String? _token;
+  String? _uid;
+  DateTime? _expiryDate;
+
+  bool get isAuth {
+    final isvalid = _expiryDate?.isAfter(DateTime.now()) ?? false;
+    return _token != null && isvalid; //retorna true ou false
+  }
 
   var serviceHttpWeb = ServiceHttpWeb();
 
@@ -38,7 +50,19 @@ class FireBaseService {
       error = '${AuthException(response['error']['message'])}';
 
       return false;
+    } else {
+      _email = response['email'];
+      _token = response['idToken'];
+      _uid = response['localId'];
+      _expiryDate = DateTime.now().add(
+        Duration(
+          seconds: int.parse(response['expiresIn']),
+        ),
+      );
+
+      debugPrint(' valido ? $isAuth  // data exp == $_expiryDate / email =$_email / localId = $_uid  /  token = $_token  ');
     }
+
     return true;
   }
 }

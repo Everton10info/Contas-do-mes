@@ -17,7 +17,7 @@ class _LoginViewState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     var viewModelLogin = Provider.of<ViewModelLogin>(context);
-    return viewModelLogin.registered
+    return viewModelLogin.registerNow
         ? const RegisterWidget(
            
           )

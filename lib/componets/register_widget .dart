@@ -99,12 +99,12 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                 color: Color.fromARGB(255, 243, 248, 248),
                               ),
                             ),
-                            labelText: 'senha',
+                            labelText: 'Confirmar senha',
                             suffixIcon: InkWell(
                               child: Icon(viewModelLogin.confirmPasswordTextObscure
                                   ? Icons.visibility_off
                                   : Icons.visibility),
-                              onTap: () => viewModelLogin.passwordTConfirmVisible(),
+                              onTap: () => viewModelLogin.passwordConfirmVisible(),
                             ),
                           ),
                         ),
