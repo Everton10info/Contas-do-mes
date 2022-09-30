@@ -1,5 +1,5 @@
 import 'package:contas_do_mes/models/api_web.dart';
-import 'package:contas_do_mes/services/web_source.dart';
+import 'package:contas_do_mes/services/web_coins_service.dart';
 import '../models/coins_model.dart';
 import 'repository_http_interface.dart';
 
@@ -8,7 +8,7 @@ class RepositoryCoins implements IHttpClient {
   ApiWeb api = ApiWeb();
   
   @override
-  ServiceHttpWeb service = ServiceHttpWeb();
+  WebCoisnService service = WebCoisnService();
 
   Coins? coinData;
 

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class ServiceHttpWeb {
+class WebCoisnService {
   Future getHttp(String url) async {
     try {
       var response = await http.get(Uri.parse(url));
