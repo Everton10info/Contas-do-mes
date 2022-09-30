@@ -1,5 +1,5 @@
 class TransactionModel {
-  int? id;
+  String? id;
   String nameTransaction;
   String? date;
   String? dueDate;

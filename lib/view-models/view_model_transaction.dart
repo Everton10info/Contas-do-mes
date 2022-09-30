@@ -17,12 +17,12 @@ class ViewModelTransaction extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteTransaction(int id) async {
+ void deleteTransaction(String id) async {
     await repository.deleteTransactions(id);
     allList.clear();
     allList = await repository.getAllTransactions();
     notifyListeners();
-  }
+  } 
 
   
 }

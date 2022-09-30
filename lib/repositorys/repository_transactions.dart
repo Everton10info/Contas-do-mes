@@ -17,7 +17,7 @@ class RepositoryTransactions implements IRepositoryDb {
 
   @override
   Future deleteTransactions(id) async {
-   /*  var database = await _db.database;
+    /*  var database = await _db.database;
     var result = await database!.delete(
       _db.nametable,
       where: 'id = ?',
@@ -29,59 +29,38 @@ class RepositoryTransactions implements IRepositoryDb {
 
   @override
   Future getAllTransactions() async {
-
- 
-
-   http.Response res =await http.get(Uri.parse('$_url/teste.json'));
-
-    var data = jsonDecode(res.body);
-
-    print('dddddddd $data');
-
-     /* for (var element in data) {
-      data.add(TransactionModel.fromjson(element));
-    } */
-
-    return  data;
-  
-    
-
-    debugPrint('resssssss $res');
-
-
- /*    var _database = await _db.database;
     List<TransactionModel> transactionsList = [];
-    String sql = "SELECT * FROM ${_db.nametable}";
-    List<Map<String, Object?>> list = await _database!.rawQuery(sql);
 
-    for (var element in list) {
+    http.Response res = await http.get(Uri.parse('$_url/${FireBaseService.uid}.json'));
+
+    Map<String, dynamic> data = jsonDecode(res.body);
+
+    for (var element in data.values) {
       transactionsList.add(TransactionModel.fromjson(element));
     }
 
-    return  transactionsList; */
+    return transactionsList;
   }
 
   @override
   Future insertTransaction(transaction) async {
     TransactionModel tr = transaction;
-
-   http.Response res =await http.post(Uri.parse('$_url/teste.json'),
-    body: jsonEncode(tr.toMap()));
+    debugPrint('teeem iuid + ${FireBaseService.uid}');
+    http.Response res = await http.post(Uri.parse('$_url/${FireBaseService.uid}.json'),
+        body: jsonEncode(tr.toMap()));
 
     debugPrint('resssssss $res');
-   
 
-  /*   var _database = await _db.database;
+    /*   var _database = await _db.database;
     TransactionModel tr = transaction;
     var result = await _database!.insert(db.nametable, tr.toMap());
 
     return result; */
-
   }
 
   @override
   Future updateTransaction(transaction) async {
-  /*   var _dataBase = await _db.database;
+    /*   var _dataBase = await _db.database;
     TransactionModel tr = transaction;
     await _dataBase!.update(
       db.nametable,
@@ -90,9 +69,7 @@ class RepositoryTransactions implements IRepositoryDb {
       whereArgs: [tr.id],
     ); */
   }
-  
-  @override
-  set db(_db) {
 
-  }
+  @override
+  set db(_db) {}
 }

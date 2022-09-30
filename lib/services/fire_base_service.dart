@@ -12,7 +12,7 @@ class FireBaseService {
 
   String? _email;
   String? _token;
-  String? _uid;
+ static String? uid;
   DateTime? _expiryDate;
 
   bool get isAuth {
@@ -52,7 +52,7 @@ class FireBaseService {
     } else {
       _email = response['email'];
       _token = response['idToken'];
-      _uid = response['localId'];
+      uid = response['localId'];
       _expiryDate = DateTime.now().add(
         Duration(
           seconds: int.parse(response['expiresIn']),
@@ -60,7 +60,7 @@ class FireBaseService {
       );
 
       debugPrint(
-          ' valido ? $isAuth  // data exp == $_expiryDate / email =$_email / localId = $_uid  /  token = $_token  ');
+          ' valido ? $isAuth  // data exp == $_expiryDate / email =$_email / localId = $uid  /  token = $_token  ');
     }
 
     return true;
